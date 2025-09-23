@@ -1,134 +1,130 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kado Ucapan</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kado Ulang Tahun</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: #fce4ec;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
+    /* Animasi ketik */
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: black;
+      animation: blink 0.7s steps(1) infinite;
+      vertical-align: middle;
+      margin-left: 2px;
     }
-    .slide {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      width: 100%;
-      height: 100%;
-      padding: 20px;
-    }
-    .active {
-      display: flex;
-    }
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      max-width: 90%;
-      font-size: 1.2em;
-      line-height: 1.5em;
-    }
-    button {
-      margin-top: 20px;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 25px;
-      background: #ff80ab;
-      color: white;
-      font-size: 1em;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    button:hover {
-      transform: scale(1.1);
-      background: #ff4081;
+    @keyframes blink {
+      50% { opacity: 0; }
     }
     img {
-      width: 200px; /* <<< foto diperkecil biar pas di HP */
-      max-width: 80%;
-      border-radius: 15px;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-    /* Animasi ketik */
-    .typed-text {
-      display: inline-block;
-      white-space: pre-line;
+      max-width: 200px; /* <<< biar pas di HP */
+      width: 100%;
+      height: auto;
     }
   </style>
 </head>
-<body>
-  <!-- Slide 1 -->
-  <div class="slide active" id="slide1" style="background:url('ultah.jpg') center/cover no-repeat;">
-    <div class="card">
-      <div class="typed-text" id="text1"></div>
-      <button onclick="nextSlide()">Coba Buka</button>
-    </div>
-  </div>
+<body class="flex items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
 
-  <!-- Slide 2 -->
-  <div class="slide" id="slide2">
-    <img src="and1.jpg" alt="Foto">
-    <div class="card">
-      <div class="typed-text" id="text2"></div>
-      <button onclick="nextSlide()">Lanjut ➡️</button>
+  <!-- Container slide -->
+  <div id="slides" class="w-full h-full flex items-center justify-center">
+    
+    <!-- SLIDE 1 -->
+    <div class="slide text-center space-y-6" id="slide1">
+      <div class="bg-white shadow-xl rounded-2xl p-8 max-w-md mx-auto">
+        <h1 class="text-2xl font-bold text-pink-600 mb-4">Hii pacarrkuu 💖</h1>
+        <p class="text-lg text-gray-700 mb-2">aku punya sesuatuu nihh 🎁</p>
+        <p class="text-lg text-gray-700 mb-4">penasarannn gakk? 😆</p>
+        <button onclick="nextSlide()" class="px-6 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition">Coba buka ➡️</button>
+      </div>
     </div>
-  </div>
 
-  <!-- Slide 3 -->
-  <div class="slide" id="slide3">
-    <img src="and3.jpg" alt="Foto">
-    <div class="card">
-      <div class="typed-text" id="text3"></div>
-      <button onclick="nextSlide()">Lanjut ➡️</button>
+    <!-- SLIDE 2 -->
+    <div class="slide hidden text-center space-y-6" id="slide2">
+      <div class="bg-white shadow-xl rounded-2xl p-8 max-w-md mx-auto">
+        <img src="and1.jpg" alt="Foto Pacar" class="mx-auto rounded-2xl border-4 border-pink-400 mb-4"/>
+        <p id="text2" class="text-lg font-semibold text-gray-700"></p>
+        <span id="cursor2" class="cursor"></span>
+        <div class="mt-4">
+          <button onclick="nextSlide()" class="px-6 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition">Lanjut ke foto lucu ➡️</button>
+        </div>
+      </div>
     </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide hidden text-center space-y-6" id="slide3">
+      <div class="bg-white shadow-xl rounded-2xl p-6 max-w-lg mx-auto">
+        <img src="and3.jpg" alt="Foto Pacar" class="mx-auto rounded-2xl border-4 border-pink-400 mb-4"/>
+        <p id="text3" class="text-lg font-semibold text-gray-700"></p>
+        <span id="cursor3" class="cursor"></span>
+        <div class="mt-4">
+          <button onclick="nextSlide()" class="px-6 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition">Lanjut ➡️</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script>
     let currentSlide = 1;
+    const totalSlides = 3;
 
-    const texts = {
-      text1: "Hii pacarrkuu\nAku punya sesuatuu nihh\nPenasarannn gakk?",
-      text2: "Kamuu kenall ini nggak?\nInii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaafkan.\nDiaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa.\nItuu juga menjadi tugasku untu menenangkanya ❤️",
-      text3: "Lihat inii...\nLucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu.\nAku barusan aja belajar biologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa.\nTapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu 💕"
-    };
-
-    function typeText(elementId, text, callback) {
-      let i = 0;
-      const speed = 50;
-      function typing() {
-        if (i < text.length) {
-          document.getElementById(elementId).textContent += text.charAt(i);
-          i++;
-          setTimeout(typing, speed);
-        } else if (callback) {
-          callback();
-        }
-      }
-      document.getElementById(elementId).textContent = "";
-      typing();
+    function showSlide(n) {
+      document.querySelectorAll(".slide").forEach((slide, index) => {
+        slide.classList.add("hidden");
+        if (index === n - 1) slide.classList.remove("hidden");
+      });
     }
 
     function nextSlide() {
-      document.getElementById(`slide${currentSlide}`).classList.remove("active");
-      currentSlide++;
-      if (currentSlide > 3) currentSlide = 1; 
-      document.getElementById(`slide${currentSlide}`).classList.add("active");
-      typeText(`text${currentSlide}`, texts[`text${currentSlide}`]);
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        showSlide(currentSlide);
+        if (currentSlide === 2) typeWriter2();
+        if (currentSlide === 3) {
+          typeWriter3();
+          setTimeout(() => {
+            confetti({
+              particleCount: 150,
+              spread: 80,
+              origin: { y: 0.6 }
+            });
+          }, 2000);
+        }
+      }
     }
 
-    window.onload = () => {
-      typeText("text1", texts.text1);
-    };
+    // Slide 2 typing
+    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaafkan. Diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa. Hal ituu wajar untu seorang wanita dan itu juga menjadi tugasku untu menenangkanya.";
+    let i2 = 0;
+    function typeWriter2() {
+      if (i2 < text2.length) {
+        document.getElementById("text2").innerHTML += text2.charAt(i2);
+        i2++;
+        setTimeout(typeWriter2, 40);
+      } else {
+        document.getElementById("cursor2").style.display = "none";
+      }
+    }
+
+    // Slide 3 typing
+    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. Aku barusan aja belajar biologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. Tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu. 💕";
+    let i3 = 0;
+    function typeWriter3() {
+      if (i3 < text3.length) {
+        document.getElementById("text3").innerHTML += text3.charAt(i3);
+        i3++;
+        setTimeout(typeWriter3, 40);
+      } else {
+        document.getElementById("cursor3").style.display = "none";
+      }
+    }
+
+    // Start at slide 1
+    showSlide(currentSlide);
   </script>
 </body>
 </html>
