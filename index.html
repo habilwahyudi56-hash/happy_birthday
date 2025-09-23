@@ -7,18 +7,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
-    /* Animasi ketik */
-    .cursor {
-      display: inline-block;
-      width: 2px;
-      height: 1em;
-      background: black;
-      animation: blink 0.7s steps(1) infinite;
-      vertical-align: middle;
-      margin-left: 2px;
-    }
-    @keyframes blink {
-      50% { opacity: 0; }
+    img {
+      max-width: 220px; /* biar pas di HP */
+      width: 100%;
+      height: auto;
     }
   </style>
 </head>
@@ -42,7 +34,6 @@
       <div class="bg-white shadow-xl rounded-2xl p-8 max-w-md mx-auto">
         <img src="and1.jpg" alt="Foto Pacar" class="mx-auto rounded-2xl border-4 border-pink-400 mb-4"/>
         <p id="text2" class="text-lg font-semibold text-gray-700"></p>
-        <span id="cursor2" class="cursor"></span>
         <div class="mt-4">
           <button onclick="nextSlide()" class="px-6 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition">Lanjut ke foto lucu ➡️</button>
         </div>
@@ -54,9 +45,7 @@
       <div class="bg-white shadow-xl rounded-2xl p-6 max-w-lg mx-auto">
         <img src="and3.jpg" alt="Foto Pacar" class="mx-auto rounded-2xl border-4 border-pink-400 mb-4"/>
         <p id="text3" class="text-lg font-semibold text-gray-700"></p>
-        <span id="cursor3" class="cursor"></span>
-        <div class="mt-4 space-x-2">
-          <button onclick="prevSlide()" class="px-6 py-2 bg-gray-400 text-white rounded-xl shadow hover:bg-gray-500 transition">⬅️ Kembali</button>
+        <div class="mt-4">
           <button onclick="nextSlide()" class="px-6 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition">Lanjut ➡️</button>
         </div>
       </div>
@@ -93,36 +82,25 @@
       }
     }
 
-    function prevSlide() {
-      if (currentSlide > 1) {
-        currentSlide--;
-        showSlide(currentSlide);
-      }
-    }
-
     // Slide 2 typing
-    const text2 = "kamuu kenall ini nggak? inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaaf kan. diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa hal ituu wajar untu seorang wanita dan itu juga menjadi tugas ku untu menenangkanya.";
+    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaafkan. Diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa. Hal ituu wajar untu seorang wanita dan itu juga menjadi tugasku untu menenangkanya.";
     let i2 = 0;
     function typeWriter2() {
       if (i2 < text2.length) {
         document.getElementById("text2").innerHTML += text2.charAt(i2);
         i2++;
         setTimeout(typeWriter2, 40);
-      } else {
-        document.getElementById("cursor2").style.display = "none";
       }
     }
 
     // Slide 3 typing
-    const text3 = "lihat inii...... lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. akuu barusan aja belajar bologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu.";
+    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. Aku barusan aja belajar biologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. Tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu. 💕";
     let i3 = 0;
     function typeWriter3() {
       if (i3 < text3.length) {
         document.getElementById("text3").innerHTML += text3.charAt(i3);
         i3++;
         setTimeout(typeWriter3, 40);
-      } else {
-        document.getElementById("cursor3").style.display = "none";
       }
     }
 
