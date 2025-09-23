@@ -20,11 +20,6 @@
     @keyframes blink {
       50% { opacity: 0; }
     }
-    img {
-      max-width: 200px; /* <<< biar pas di HP */
-      width: 100%;
-      height: auto;
-    }
   </style>
 </head>
 <body class="flex items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
@@ -60,7 +55,8 @@
         <img src="and3.jpg" alt="Foto Pacar" class="mx-auto rounded-2xl border-4 border-pink-400 mb-4"/>
         <p id="text3" class="text-lg font-semibold text-gray-700"></p>
         <span id="cursor3" class="cursor"></span>
-        <div class="mt-4">
+        <div class="mt-4 space-x-2">
+          <button onclick="prevSlide()" class="px-6 py-2 bg-gray-400 text-white rounded-xl shadow hover:bg-gray-500 transition">⬅️ Kembali</button>
           <button onclick="nextSlide()" class="px-6 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition">Lanjut ➡️</button>
         </div>
       </div>
@@ -97,8 +93,15 @@
       }
     }
 
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    }
+
     // Slide 2 typing
-    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaafkan. Diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa. Hal ituu wajar untu seorang wanita dan itu juga menjadi tugasku untu menenangkanya.";
+    const text2 = "kamuu kenall ini nggak? inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaaf kan. diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa hal ituu wajar untu seorang wanita dan itu juga menjadi tugas ku untu menenangkanya.";
     let i2 = 0;
     function typeWriter2() {
       if (i2 < text2.length) {
@@ -111,7 +114,7 @@
     }
 
     // Slide 3 typing
-    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. Aku barusan aja belajar biologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. Tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu. 💕";
+    const text3 = "lihat inii...... lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. akuu barusan aja belajar bologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu.";
     let i3 = 0;
     function typeWriter3() {
       if (i3 < text3.length) {
