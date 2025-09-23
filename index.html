@@ -24,8 +24,8 @@
     <!-- SLIDE 2 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide2">
       <img src="and1.jpg" alt="Foto Pacar" class="rounded-2xl border-2 border-pink-400 w-[150px] h-auto"/>
-      <div class="min-h-[200px] w-full max-w-xl">
-        <p id="text2" class="text-base font-semibold text-pink-700 text-left"></p>
+      <div class="min-h-[200px] w-full max-w-xl px-3">
+        <p id="text2" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
       </div>
       <button id="btn2" onclick="nextSlide()" class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">Lanjut ke foto lucu ➡️</button>
     </div>
@@ -33,8 +33,8 @@
     <!-- SLIDE 3 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide3">
       <img src="and3.jpg" alt="Foto Pacar" class="rounded-2xl border-2 border-pink-400 w-[150px] h-auto"/>
-      <div class="min-h-[200px] w-full max-w-xl">
-        <p id="text3" class="text-base font-semibold text-purple-700 text-left"></p>
+      <div class="min-h-[200px] w-full max-w-xl px-3">
+        <p id="text3" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
       </div>
       <button id="btn3" onclick="nextSlide()" class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm hidden">Lanjut ➡️</button>
     </div>
@@ -72,7 +72,7 @@
         i2++;
         setTimeout(typeWriter2, 40);
       } else {
-        btn.classList.remove("hidden"); // tampilkan tombol setelah teks selesai
+        btn.classList.remove("hidden");
       }
     }
 
