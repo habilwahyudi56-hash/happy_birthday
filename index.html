@@ -20,27 +20,6 @@
     @keyframes blink {
       50% { opacity: 0; }
     }
-
-    /* Love Frame */
-    .love-container {
-      position: relative;
-      width: 250px;
-      height: 250px;
-      margin: 0 auto;
-    }
-    .love-container svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-    .love-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* wajah utuh */
-      clip-path: url(#loveClip);
-    }
   </style>
 </head>
 <body class="flex items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
@@ -73,24 +52,8 @@
     <!-- SLIDE 3 -->
     <div class="slide hidden text-center space-y-6" id="slide3">
       <div class="bg-white shadow-xl rounded-2xl p-6 max-w-lg mx-auto">
-        <div class="love-container">
-          <!-- Foto di dalam bingkai love -->
-          <img src="and3.jpg" alt="Foto Pacar" />
-          <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-            <defs>
-              <clipPath id="loveClip" clipPathUnits="objectBoundingBox">
-                <path d="M0.5,0.9 
-                         C0.2,0.6 0,0.35 0.25,0.15 
-                         C0.35,0.05 0.5,0.15 0.5,0.25 
-                         C0.5,0.15 0.65,0.05 0.75,0.15 
-                         C1,0.35 0.8,0.6 0.5,0.9Z"/>
-              </clipPath>
-            </defs>
-            <path d="M50,90 C20,60 0,35 25,15 C35,5 50,15 50,25 C50,15 65,5 75,15 C100,35 80,60 50,90Z" 
-                  fill="pink" stroke="red" stroke-width="2"/>
-          </svg>
-        </div>
-        <p id="text3" class="text-lg font-semibold text-gray-700 mt-4"></p>
+        <img src="and3.jpg" alt="Foto Pacar" class="mx-auto rounded-2xl border-4 border-pink-400 mb-4"/>
+        <p id="text3" class="text-lg font-semibold text-gray-700"></p>
         <span id="cursor3" class="cursor"></span>
         <div class="mt-4 space-x-2">
           <button onclick="prevSlide()" class="px-6 py-2 bg-gray-400 text-white rounded-xl shadow hover:bg-gray-500 transition">⬅️ Kembali</button>
