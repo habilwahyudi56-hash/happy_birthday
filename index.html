@@ -3,10 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Slide 3 - Love Frame</title>
+  <title>Kado Ulang Tahun</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
+    /* Animasi ketik */
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: black;
+      animation: blink 0.7s steps(1) infinite;
+      vertical-align: middle;
+      margin-left: 2px;
+    }
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    /* Love Frame */
     .love-container {
       position: relative;
       width: 250px;
@@ -23,57 +38,133 @@
     .love-container img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* biar wajah nggak kepotong */
+      object-fit: contain; /* wajah utuh */
       clip-path: url(#loveClip);
     }
   </style>
 </head>
 <body class="flex items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
 
-  <div class="bg-white shadow-xl rounded-2xl p-6 max-w-lg text-center space-y-4">
-    <div class="love-container">
-      <!-- Foto di dalam bingkai love -->
-      <img src="and3.jpg" alt="Foto Pacar" />
-      <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <clipPath id="loveClip" clipPathUnits="objectBoundingBox">
-            <path d="M0.5,0.9 
-                     C0.2,0.6 0,0.35 0.25,0.15 
-                     C0.35,0.05 0.5,0.15 0.5,0.25 
-                     C0.5,0.15 0.65,0.05 0.75,0.15 
-                     C1,0.35 0.8,0.6 0.5,0.9Z"/>
-          </clipPath>
-        </defs>
-        <path d="M50,90 C20,60 0,35 25,15 C35,5 50,15 50,25 C50,15 65,5 75,15 C100,35 80,60 50,90Z" 
-              fill="pink" stroke="red" stroke-width="2"/>
-      </svg>
+  <!-- Container slide -->
+  <div id="slides" class="w-full h-full flex items-center justify-center">
+    
+    <!-- SLIDE 1 -->
+    <div class="slide text-center space-y-6" id="slide1">
+      <div class="bg-white shadow-xl rounded-2xl p-8 max-w-md mx-auto">
+        <h1 class="text-2xl font-bold text-pink-600 mb-4">Hii pacarrkuu 💖</h1>
+        <p class="text-lg text-gray-700 mb-2">aku punya sesuatuu nihh 🎁</p>
+        <p class="text-lg text-gray-700 mb-4">penasarannn gakk? 😆</p>
+        <button onclick="nextSlide()" class="px-6 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition">Coba buka ➡️</button>
+      </div>
     </div>
-    <p id="text" class="text-lg font-semibold text-gray-700"></p>
+
+    <!-- SLIDE 2 -->
+    <div class="slide hidden text-center space-y-6" id="slide2">
+      <div class="bg-white shadow-xl rounded-2xl p-8 max-w-md mx-auto">
+        <img src="and1.jpg" alt="Foto Pacar" class="mx-auto rounded-2xl border-4 border-pink-400 mb-4"/>
+        <p id="text2" class="text-lg font-semibold text-gray-700"></p>
+        <span id="cursor2" class="cursor"></span>
+        <div class="mt-4">
+          <button onclick="nextSlide()" class="px-6 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition">Lanjut ke foto lucu ➡️</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide hidden text-center space-y-6" id="slide3">
+      <div class="bg-white shadow-xl rounded-2xl p-6 max-w-lg mx-auto">
+        <div class="love-container">
+          <!-- Foto di dalam bingkai love -->
+          <img src="and3.jpg" alt="Foto Pacar" />
+          <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <clipPath id="loveClip" clipPathUnits="objectBoundingBox">
+                <path d="M0.5,0.9 
+                         C0.2,0.6 0,0.35 0.25,0.15 
+                         C0.35,0.05 0.5,0.15 0.5,0.25 
+                         C0.5,0.15 0.65,0.05 0.75,0.15 
+                         C1,0.35 0.8,0.6 0.5,0.9Z"/>
+              </clipPath>
+            </defs>
+            <path d="M50,90 C20,60 0,35 25,15 C35,5 50,15 50,25 C50,15 65,5 75,15 C100,35 80,60 50,90Z" 
+                  fill="pink" stroke="red" stroke-width="2"/>
+          </svg>
+        </div>
+        <p id="text3" class="text-lg font-semibold text-gray-700 mt-4"></p>
+        <span id="cursor3" class="cursor"></span>
+        <div class="mt-4 space-x-2">
+          <button onclick="prevSlide()" class="px-6 py-2 bg-gray-400 text-white rounded-xl shadow hover:bg-gray-500 transition">⬅️ Kembali</button>
+          <button onclick="nextSlide()" class="px-6 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition">Lanjut ➡️</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script>
-    // Efek ketik
-    const text = "lihat inii...... lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. akuu barusan aja belajar bologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu.";
-    let i = 0;
-    function typeWriter() {
-      if (i < text.length) {
-        document.getElementById("text").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 40);
+    let currentSlide = 1;
+    const totalSlides = 3;
+
+    function showSlide(n) {
+      document.querySelectorAll(".slide").forEach((slide, index) => {
+        slide.classList.add("hidden");
+        if (index === n - 1) slide.classList.remove("hidden");
+      });
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        showSlide(currentSlide);
+        if (currentSlide === 2) typeWriter2();
+        if (currentSlide === 3) {
+          typeWriter3();
+          setTimeout(() => {
+            confetti({
+              particleCount: 150,
+              spread: 80,
+              origin: { y: 0.6 }
+            });
+          }, 2000);
+        }
       }
     }
-    window.onload = () => {
-      typeWriter();
-      // Konfeti
-      setTimeout(() => {
-        confetti({
-          particleCount: 150,
-          spread: 80,
-          origin: { y: 0.6 }
-        });
-      }, 2000);
-    }
-  </script>
 
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    }
+
+    // Slide 2 typing
+    const text2 = "kamuu kenall ini nggak? inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaaf kan. diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa hal ituu wajar untu seorang wanita dan itu juga menjadi tugas ku untu menenangkanya.";
+    let i2 = 0;
+    function typeWriter2() {
+      if (i2 < text2.length) {
+        document.getElementById("text2").innerHTML += text2.charAt(i2);
+        i2++;
+        setTimeout(typeWriter2, 40);
+      } else {
+        document.getElementById("cursor2").style.display = "none";
+      }
+    }
+
+    // Slide 3 typing
+    const text3 = "lihat inii...... lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. akuu barusan aja belajar bologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu.";
+    let i3 = 0;
+    function typeWriter3() {
+      if (i3 < text3.length) {
+        document.getElementById("text3").innerHTML += text3.charAt(i3);
+        i3++;
+        setTimeout(typeWriter3, 40);
+      } else {
+        document.getElementById("cursor3").style.display = "none";
+      }
+    }
+
+    // Start at slide 1
+    showSlide(currentSlide);
+  </script>
 </body>
 </html>
