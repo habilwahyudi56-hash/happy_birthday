@@ -9,7 +9,6 @@
 </head>
 <body class="flex items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
 
-  <!-- Container slide -->
   <div id="slides" class="w-full h-full flex flex-col items-center justify-center">
 
     <!-- SLIDE 1 -->
@@ -23,29 +22,21 @@
     </div>
 
     <!-- SLIDE 2 -->
-    <div class="slide hidden text-center space-y-4" id="slide2">
-      <div class="p-5">
-        <img src="and1.jpg" alt="Foto Pacar" class="mx-auto rounded-2xl border-2 border-pink-400 mb-3 w-[150px] h-auto"/>
-        <div class="min-h-[120px]">
-          <p id="text2" class="text-base font-semibold text-pink-700 max-w-xl mx-auto text-left"></p>
-        </div>
-        <div class="mt-3">
-          <button onclick="nextSlide()" class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm">Lanjut ke foto lucu ➡️</button>
-        </div>
+    <div class="slide hidden flex flex-col items-center space-y-4" id="slide2">
+      <img src="and1.jpg" alt="Foto Pacar" class="rounded-2xl border-2 border-pink-400 w-[150px] h-auto"/>
+      <div class="min-h-[200px] w-full max-w-xl">
+        <p id="text2" class="text-base font-semibold text-pink-700 text-left"></p>
       </div>
+      <button id="btn2" onclick="nextSlide()" class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">Lanjut ke foto lucu ➡️</button>
     </div>
 
     <!-- SLIDE 3 -->
-    <div class="slide hidden text-center space-y-4" id="slide3">
-      <div class="p-5">
-        <img src="and3.jpg" alt="Foto Pacar" class="mx-auto rounded-2xl border-2 border-pink-400 mb-3 w-[150px] h-auto"/>
-        <div class="min-h-[120px]">
-          <p id="text3" class="text-base font-semibold text-purple-700 max-w-xl mx-auto text-left"></p>
-        </div>
-        <div class="mt-3">
-          <button onclick="nextSlide()" class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm">Lanjut ➡️</button>
-        </div>
+    <div class="slide hidden flex flex-col items-center space-y-4" id="slide3">
+      <img src="and3.jpg" alt="Foto Pacar" class="rounded-2xl border-2 border-pink-400 w-[150px] h-auto"/>
+      <div class="min-h-[200px] w-full max-w-xl">
+        <p id="text3" class="text-base font-semibold text-purple-700 text-left"></p>
       </div>
+      <button id="btn3" onclick="nextSlide()" class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm hidden">Lanjut ➡️</button>
     </div>
 
   </div>
@@ -66,16 +57,7 @@
         currentSlide++;
         showSlide(currentSlide);
         if (currentSlide === 2) typeWriter2();
-        if (currentSlide === 3) {
-          typeWriter3();
-          setTimeout(() => {
-            confetti({
-              particleCount: 120,
-              spread: 70,
-              origin: { y: 0.6 }
-            });
-          }, 2000);
-        }
+        if (currentSlide === 3) typeWriter3();
       }
     }
 
@@ -83,10 +65,14 @@
     const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaafkan. Diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa. Hal ituu wajar untu seorang wanita dan itu juga menjadi tugasku untu menenangkanya.";
     let i2 = 0;
     function typeWriter2() {
+      const p = document.getElementById("text2");
+      const btn = document.getElementById("btn2");
       if (i2 < text2.length) {
-        document.getElementById("text2").innerHTML += text2.charAt(i2);
+        p.innerHTML += text2.charAt(i2);
         i2++;
         setTimeout(typeWriter2, 40);
+      } else {
+        btn.classList.remove("hidden"); // tampilkan tombol setelah teks selesai
       }
     }
 
@@ -94,14 +80,24 @@
     const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. Aku barusan aja belajar biologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. Tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu. 💕";
     let i3 = 0;
     function typeWriter3() {
+      const p = document.getElementById("text3");
+      const btn = document.getElementById("btn3");
       if (i3 < text3.length) {
-        document.getElementById("text3").innerHTML += text3.charAt(i3);
+        p.innerHTML += text3.charAt(i3);
         i3++;
         setTimeout(typeWriter3, 40);
+      } else {
+        btn.classList.remove("hidden");
+        setTimeout(() => {
+          confetti({
+            particleCount: 120,
+            spread: 70,
+            origin: { y: 0.6 }
+          });
+        }, 500);
       }
     }
 
-    // Start at slide 1
     showSlide(currentSlide);
   </script>
 </body>
