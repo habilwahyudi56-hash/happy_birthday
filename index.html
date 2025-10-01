@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
@@ -6,6 +6,16 @@
   <title>Kado Ulang Tahun</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    /* Animasi fade in */
+    .fade {
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
 </head>
 <body class="flex items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
 
@@ -26,8 +36,7 @@
     <!-- SLIDE 2 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide2">
       <img src="and1.jpg" alt="Foto Pacar" 
-           class="rounded-2xl border-2 border-pink-400 mb-3"
-           style="width:200px; height:auto;"/>
+           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text2" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
       </div>
@@ -40,8 +49,7 @@
     <!-- SLIDE 3 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide3">
       <img src="and3.jpg" alt="Foto Pacar" 
-           class="rounded-2xl border-2 border-pink-400 mb-3"
-           style="width:200px; height:auto;"/>
+           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text3" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
       </div>
@@ -60,7 +68,10 @@
     function showSlide(n) {
       document.querySelectorAll(".slide").forEach((slide, index) => {
         slide.classList.add("hidden");
-        if (index === n - 1) slide.classList.remove("hidden");
+        if (index === n - 1) {
+          slide.classList.remove("hidden");
+          slide.classList.add("fade");
+        }
       });
     }
 
@@ -68,17 +79,24 @@
       if (currentSlide < totalSlides) {
         currentSlide++;
         showSlide(currentSlide);
-        if (currentSlide === 2) typeWriter2();
-        if (currentSlide === 3) typeWriter3();
+        if (currentSlide === 2) {
+          i2 = 0;
+          typeWriter2();
+        }
+        if (currentSlide === 3) {
+          i3 = 0;
+          typeWriter3();
+        }
       }
     }
 
     // Slide 2 typing
-    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaafkan. Diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa. Hal ituu wajar untu seorang wanita dan itu juga menjadi tugasku untu menenangkanya.";
+    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaafkan. Diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa. Hal ituu wajar untuk seorang wanita dan itu juga menjadi tugasku untuk menenangkanya.";
     let i2 = 0;
     function typeWriter2() {
       const p = document.getElementById("text2");
       const btn = document.getElementById("btn2");
+      if (i2 === 0) p.innerHTML = ""; // reset sebelum ketik ulang
       if (i2 < text2.length) {
         p.innerHTML += text2.charAt(i2);
         i2++;
@@ -94,6 +112,7 @@
     function typeWriter3() {
       const p = document.getElementById("text3");
       const btn = document.getElementById("btn3");
+      if (i3 === 0) p.innerHTML = ""; // reset sebelum ketik ulang
       if (i3 < text3.length) {
         p.innerHTML += text3.charAt(i3);
         i3++;
@@ -101,13 +120,31 @@
       } else {
         btn.classList.remove("hidden");
         setTimeout(() => {
-          confetti({
-            particleCount: 120,
-            spread: 70,
-            origin: { y: 0.6 }
-          });
+          fireConfetti();
         }, 500);
       }
+    }
+
+    // Confetti lebih meriah
+    function fireConfetti() {
+      var end = Date.now() + 1500;
+      (function frame() {
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
     }
 
     showSlide(currentSlide);
