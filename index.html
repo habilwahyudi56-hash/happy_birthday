@@ -15,6 +15,15 @@
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
     }
+
+    /* Tombol smooth muncul */
+    .fade-btn {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .fade-btn.show {
+      opacity: 1;
+    }
   </style>
 </head>
 <body class="flex items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
@@ -41,7 +50,7 @@
         <p id="text2" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
       </div>
       <button id="btn2" onclick="nextSlide()" 
-              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
+              class="fade-btn px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm">
         Lanjutin yaa ➡️
       </button>
     </div>
@@ -54,20 +63,20 @@
         <p id="text3" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
       </div>
       <button id="btn3" onclick="nextSlide()" 
-              class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm hidden">
+              class="fade-btn px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm">
         Lanjut, masih kuat kann? ➡️
       </button>
     </div>
 
     <!-- SLIDE 4 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide4">
-      <img src="and2.jpg" alt="Foto Pacar"
+      <img src="and4.jpg" alt="Foto Pacar"
            class="rounded-2xl border-2 border-purple-400 mb-3 w-48 sm:w-56 md:w-64"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text4" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
       </div>
       <button id="btn4" onclick="nextSlide()" 
-              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
+              class="fade-btn px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm">
         Masih adaa lohh ➡️
       </button>
     </div>
@@ -119,7 +128,7 @@
         i2++;
         setTimeout(typeWriter2, 40);
       } else {
-        btn.classList.remove("hidden");
+        setTimeout(() => { btn.classList.add("show"); }, 500);
       }
     }
 
@@ -135,10 +144,8 @@
         i3++;
         setTimeout(typeWriter3, 40);
       } else {
-        btn.classList.remove("hidden");
-        setTimeout(() => {
-          fireConfetti();
-        }, 500);
+        setTimeout(() => { btn.classList.add("show"); }, 500);
+        setTimeout(() => { fireConfetti(); }, 800);
       }
     }
 
@@ -154,10 +161,8 @@
         i4++;
         setTimeout(typeWriter4, 40);
       } else {
-        btn.classList.remove("hidden");
-        setTimeout(() => {
-          fireConfetti();
-        }, 500);
+        setTimeout(() => { btn.classList.add("show"); }, 500);
+        setTimeout(() => { fireConfetti(); }, 800);
       }
     }
 
@@ -187,3 +192,4 @@
   </script>
 </body>
 </html>
+
