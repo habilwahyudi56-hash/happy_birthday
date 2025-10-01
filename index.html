@@ -70,7 +70,7 @@
 
     <!-- SLIDE 4 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide4">
-      <img src="and2.jpg" alt="Foto Pacar"
+      <img src="and4.jpg" alt="Foto Pacar"
            class="rounded-2xl border-2 border-purple-400 mb-3 w-48 sm:w-56 md:w-64"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text4" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
@@ -81,11 +81,24 @@
       </button>
     </div>
 
+    <!-- SLIDE 5 (ULTAH 🎂🎉) -->
+    <div class="slide hidden flex flex-col items-center space-y-4" id="slide5">
+      <img src="cake.jpg" alt="Kue Ulang Tahun"
+           class="rounded-2xl border-2 border-yellow-400 mb-3 w-48 sm:w-56 md:w-64"/>
+      <div class="min-h-[220px] w-full max-w-xl px-3">
+        <p id="text5" class="text-lg font-bold text-pink-600 mx-auto text-center"></p>
+      </div>
+      <button id="btn5" onclick="fireBigConfetti()" 
+              class="fade-btn px-5 py-2 bg-yellow-500 text-white rounded-xl shadow hover:bg-yellow-600 transition text-base">
+        🎉 Happy Birthday Sayangkuu 🎉
+      </button>
+    </div>
+
   </div>
 
   <script>
     let currentSlide = 1;
-    const totalSlides = 4;
+    const totalSlides = 5;
 
     function showSlide(n) {
       document.querySelectorAll(".slide").forEach((slide, index) => {
@@ -101,18 +114,10 @@
       if (currentSlide < totalSlides) {
         currentSlide++;
         showSlide(currentSlide);
-        if (currentSlide === 2) {
-          i2 = 0;
-          typeWriter2();
-        }
-        if (currentSlide === 3) {
-          i3 = 0;
-          typeWriter3();
-        }
-        if (currentSlide === 4) {
-          i4 = 0;
-          typeWriter4();
-        }
+        if (currentSlide === 2) { i2 = 0; typeWriter2(); }
+        if (currentSlide === 3) { i3 = 0; typeWriter3(); }
+        if (currentSlide === 4) { i4 = 0; typeWriter4(); }
+        if (currentSlide === 5) { i5 = 0; typeWriter5(); }
       }
     }
 
@@ -166,21 +171,43 @@
       }
     }
 
-    // Confetti
+    // Slide 5 typing (ULTAH 🎂)
+    const text5 = "Selamatt Ulang Tahunn Sayangkuu 🎂💕 Semoga kamu panjang umur, sehat selalu, makin cantikk, makin bahagia, dan semua cita-cita kamu tercapai. Aku bakal selalu nemenin kamu dalam suka maupun duka. Kamu adalah hadiah terindah buat hidup aku. 🎉❤️";
+    let i5 = 0;
+    function typeWriter5() {
+      const p = document.getElementById("text5");
+      const btn = document.getElementById("btn5");
+      if (i5 === 0) p.innerHTML = ""; 
+      if (i5 < text5.length) {
+        p.innerHTML += text5.charAt(i5);
+        i5++;
+        setTimeout(typeWriter5, 40);
+      } else {
+        setTimeout(() => { btn.classList.add("show"); }, 700);
+        setTimeout(() => { fireBigConfetti(); }, 1000);
+      }
+    }
+
+    // Confetti biasa
     function fireConfetti() {
       var end = Date.now() + 1500;
       (function frame() {
+        confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+        confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+        if (Date.now() < end) requestAnimationFrame(frame);
+      })();
+    }
+
+    // Confetti ultah meriah 🎉
+    function fireBigConfetti() {
+      var duration = 3 * 1000;
+      var end = Date.now() + duration;
+      (function frame() {
         confetti({
-          particleCount: 5,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 }
-        });
-        confetti({
-          particleCount: 5,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 }
+          particleCount: 10,
+          spread: 80,
+          startVelocity: 40,
+          origin: { x: Math.random(), y: Math.random() - 0.2 }
         });
         if (Date.now() < end) {
           requestAnimationFrame(frame);
@@ -192,4 +219,3 @@
   </script>
 </body>
 </html>
-
