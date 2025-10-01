@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
@@ -59,11 +59,24 @@
       </button>
     </div>
 
+    <!-- SLIDE 4 -->
+    <div class="slide hidden flex flex-col items-center space-y-4" id="slide4">
+      <img src="and4.jpg" alt="Foto Pacar"
+           class="rounded-2xl border-2 border-purple-400 mb-3 w-48 sm:w-56 md:w-64"/>
+      <div class="min-h-[200px] w-full max-w-xl px-3">
+        <p id="text4" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
+      </div>
+      <button id="btn4" onclick="nextSlide()" 
+              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
+        Masih adaa lohh ➡️
+      </button>
+    </div>
+
   </div>
 
   <script>
     let currentSlide = 1;
-    const totalSlides = 3;
+    const totalSlides = 4;
 
     function showSlide(n) {
       document.querySelectorAll(".slide").forEach((slide, index) => {
@@ -87,6 +100,10 @@
           i3 = 0;
           typeWriter3();
         }
+        if (currentSlide === 4) {
+          i4 = 0;
+          typeWriter4();
+        }
       }
     }
 
@@ -96,7 +113,7 @@
     function typeWriter2() {
       const p = document.getElementById("text2");
       const btn = document.getElementById("btn2");
-      if (i2 === 0) p.innerHTML = ""; // reset sebelum ketik ulang
+      if (i2 === 0) p.innerHTML = ""; 
       if (i2 < text2.length) {
         p.innerHTML += text2.charAt(i2);
         i2++;
@@ -112,7 +129,7 @@
     function typeWriter3() {
       const p = document.getElementById("text3");
       const btn = document.getElementById("btn3");
-      if (i3 === 0) p.innerHTML = ""; // reset sebelum ketik ulang
+      if (i3 === 0) p.innerHTML = ""; 
       if (i3 < text3.length) {
         p.innerHTML += text3.charAt(i3);
         i3++;
@@ -125,7 +142,26 @@
       }
     }
 
-    // Confetti lebih meriah
+    // Slide 4 typing
+    const text4 = "Sayanggg, aku cuma mau bilang... terima kasih udah selalu ada buat aku. Kamu itu bukan cuma pacar, tapi juga sahabat, tempat cerita, sekaligus rumah yang selalu bikin aku nyaman. Aku janji bakal selalu jagain kamu, sekarang dan seterusnyaa. 💖";
+    let i4 = 0;
+    function typeWriter4() {
+      const p = document.getElementById("text4");
+      const btn = document.getElementById("btn4");
+      if (i4 === 0) p.innerHTML = ""; 
+      if (i4 < text4.length) {
+        p.innerHTML += text4.charAt(i4);
+        i4++;
+        setTimeout(typeWriter4, 40);
+      } else {
+        btn.classList.remove("hidden");
+        setTimeout(() => {
+          fireConfetti();
+        }, 500);
+      }
+    }
+
+    // Confetti
     function fireConfetti() {
       var end = Date.now() + 1500;
       (function frame() {
