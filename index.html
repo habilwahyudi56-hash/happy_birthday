@@ -15,15 +15,6 @@
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
     }
-
-    /* Tombol smooth muncul */
-    .fade-btn {
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-    }
-    .fade-btn.show {
-      opacity: 1;
-    }
   </style>
 </head>
 <body class="flex items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
@@ -44,54 +35,50 @@
 
     <!-- SLIDE 2 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide2">
-      <img src="and1.jpg" alt="Foto Pacar" 
+      <img src="and1.jpg" alt="Foto Pacar"
            class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text2" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
       </div>
       <button id="btn2" onclick="nextSlide()" 
-              class="fade-btn px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm">
+              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
         Lanjutin yaa ➡️
       </button>
     </div>
 
     <!-- SLIDE 3 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide3">
-      <img src="and3.jpg" alt="Foto Pacar" 
+      <img src="and3.jpg" alt="Foto Pacar"
            class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text3" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
       </div>
       <button id="btn3" onclick="nextSlide()" 
-              class="fade-btn px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm">
+              class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm hidden">
         Lanjut, masih kuat kann? ➡️
       </button>
     </div>
 
     <!-- SLIDE 4 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide4">
-      <img src="and2.jpg" alt="Foto Pacar"
+      <img src="and4.jpg" alt="Foto Pacar Lagi"
            class="rounded-2xl border-2 border-purple-400 mb-3 w-48 sm:w-56 md:w-64"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text4" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
+        <p id="text4" class="text-base font-semibold text-pink-800 mx-auto text-center"></p>
       </div>
       <button id="btn4" onclick="nextSlide()" 
-              class="fade-btn px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm">
-        Masih adaa lohh ➡️
+              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
+        Ada lagi nih ➡️
       </button>
     </div>
 
-    <!-- SLIDE 5 (ULTAH 🎂🎉) -->
+    <!-- SLIDE 5 (GIF Kue Ulang Tahun) -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide5">
-      <img src="cake.jpg" alt="Kue Ulang Tahun"
-           class="rounded-2xl border-2 border-yellow-400 mb-3 w-48 sm:w-56 md:w-64"/>
-      <div class="min-h-[220px] w-full max-w-xl px-3">
-        <p id="text5" class="text-lg font-bold text-pink-600 mx-auto text-center"></p>
+      <img src="birthday-6_256.gif" alt="Birthday Cake"
+           class="rounded-2xl shadow-lg mb-3 w-48 sm:w-56 md:w-64"/>
+      <div class="min-h-[200px] w-full max-w-xl px-3">
+        <p id="text5" class="text-lg font-bold text-pink-700 mx-auto text-center"></p>
       </div>
-      <button id="btn5" onclick="fireBigConfetti()" 
-              class="fade-btn px-5 py-2 bg-yellow-500 text-white rounded-xl shadow hover:bg-yellow-600 transition text-base">
-        🎉 Happy Birthday Sayangkuu 🎉
-      </button>
     </div>
 
   </div>
@@ -127,88 +114,70 @@
     function typeWriter2() {
       const p = document.getElementById("text2");
       const btn = document.getElementById("btn2");
-      if (i2 === 0) p.innerHTML = ""; 
+      if (i2 === 0) p.innerHTML = "";
       if (i2 < text2.length) {
         p.innerHTML += text2.charAt(i2);
         i2++;
         setTimeout(typeWriter2, 40);
       } else {
-        setTimeout(() => { btn.classList.add("show"); }, 500);
+        btn.classList.remove("hidden");
       }
     }
 
     // Slide 3 typing
-    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. Aku barusan belajar biologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. Tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu. 💕";
+    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. Aku barusan aja belajar biologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. Tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu. 💕";
     let i3 = 0;
     function typeWriter3() {
       const p = document.getElementById("text3");
       const btn = document.getElementById("btn3");
-      if (i3 === 0) p.innerHTML = ""; 
+      if (i3 === 0) p.innerHTML = "";
       if (i3 < text3.length) {
         p.innerHTML += text3.charAt(i3);
         i3++;
         setTimeout(typeWriter3, 40);
       } else {
-        setTimeout(() => { btn.classList.add("show"); }, 500);
-        setTimeout(() => { fireConfetti(); }, 800);
+        btn.classList.remove("hidden");
+        setTimeout(() => { fireConfetti(); }, 500);
       }
     }
 
     // Slide 4 typing
-    const text4 = "Sayanggg, aku cuma mau bilang... terima kasih udah selalu ada buat aku. Kamu itu bukan cuma pacar, tapi juga sahabat, tempat cerita, sekaligus rumah yang selalu bikin aku nyaman. Aku janji bakal selalu jagain kamu, sekarang dan seterusnyaa. 💖";
+    const text4 = "Kamu itu alasan aku semangat setiap hari, alasan aku bisa bertahan di saat berat. Aku bersyukur banget bisa ketemu kamu dan punya kamu. Kamu itu anugerah terindah dalam hidupku. ❤️";
     let i4 = 0;
     function typeWriter4() {
       const p = document.getElementById("text4");
       const btn = document.getElementById("btn4");
-      if (i4 === 0) p.innerHTML = ""; 
+      if (i4 === 0) p.innerHTML = "";
       if (i4 < text4.length) {
         p.innerHTML += text4.charAt(i4);
         i4++;
         setTimeout(typeWriter4, 40);
       } else {
-        setTimeout(() => { btn.classList.add("show"); }, 500);
-        setTimeout(() => { fireConfetti(); }, 800);
+        btn.classList.remove("hidden");
       }
     }
 
-    // Slide 5 typing (ULTAH 🎂)
-    const text5 = "Selamatt Ulang Tahunn Sayangkuu 🎂💕 Semoga kamu panjang umur, sehat selalu, makin cantikk, makin bahagia, dan semua cita-cita kamu tercapai. Aku bakal selalu nemenin kamu dalam suka maupun duka. Kamu adalah hadiah terindah buat hidup aku. 🎉❤️";
+    // Slide 5 typing
+    const text5 = "Selamat Ulang Tahunn sayanggkuuu 🎂💖 Semoga semua doa dan harapanmu terkabul, dan aku bisa selalu ada di setiap momen hidupmu. Aku sayang kamu, selalu dan selamanya. 💕";
     let i5 = 0;
     function typeWriter5() {
       const p = document.getElementById("text5");
-      const btn = document.getElementById("btn5");
-      if (i5 === 0) p.innerHTML = ""; 
+      if (i5 === 0) p.innerHTML = "";
       if (i5 < text5.length) {
         p.innerHTML += text5.charAt(i5);
         i5++;
         setTimeout(typeWriter5, 40);
       } else {
-        setTimeout(() => { btn.classList.add("show"); }, 700);
-        setTimeout(() => { fireBigConfetti(); }, 1000);
+        setTimeout(() => { fireConfetti(); }, 800);
       }
     }
 
-    // Confetti biasa
+    // Confetti
     function fireConfetti() {
       var end = Date.now() + 1500;
       (function frame() {
         confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
         confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
-        if (Date.now() < end) requestAnimationFrame(frame);
-      })();
-    }
-
-    // Confetti ultah meriah 🎉
-    function fireBigConfetti() {
-      var duration = 3 * 1000;
-      var end = Date.now() + duration;
-      (function frame() {
-        confetti({
-          particleCount: 10,
-          spread: 80,
-          startVelocity: 40,
-          origin: { x: Math.random(), y: Math.random() - 0.2 }
-        });
         if (Date.now() < end) {
           requestAnimationFrame(frame);
         }
