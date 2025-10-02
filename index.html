@@ -35,7 +35,7 @@
 
     <!-- SLIDE 2 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide2">
-      <img src="and1.jpg" alt="Foto Pacar" 
+      <img src="and1.jpg" alt="Foto Pacar"
            class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text2" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
@@ -48,7 +48,7 @@
 
     <!-- SLIDE 3 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide3">
-      <img src="and3.jpg" alt="Foto Pacar" 
+      <img src="and3.jpg" alt="Foto Pacar"
            class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text3" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
@@ -61,14 +61,14 @@
 
     <!-- SLIDE 4 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide4">
-      <img src="and2.jpg" alt="Foto Pacar" 
-           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
+      <img src="and4.jpg" alt="Foto Pacar"
+           class="rounded-2xl border-2 border-purple-400 mb-3 w-52 sm:w-60 md:w-72"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text4" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
+        <p id="text4" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
       </div>
       <button id="btn4" onclick="nextSlide()" 
               class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
-        Ada lagi nih ➡️
+        Terakhir nihh 🎉
       </button>
     </div>
 
@@ -78,95 +78,6 @@
            class="rounded-2xl shadow-lg mb-3 w-64 sm:w-72 md:w-80"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text5" class="text-lg font-bold text-pink-700 mx-auto text-center"></p>
-      </div>
-    </div>
-
-  </div>
-
-  <script>
-    let currentSlide = 1;
-    const totalSlides = 5;
-
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kado Ulang Tahun</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <style>
-    /* Animasi fade in */
-    .fade {
-      animation: fadeIn 0.8s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-  </style>
-</head>
-<body class="flex items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
-
-  <div id="slides" class="w-full h-full flex flex-col items-center justify-center">
-
-    <!-- SLIDE 1 -->
-    <div class="slide text-center space-y-4" id="slide1">
-      <div class="bg-white shadow-xl rounded-2xl p-5 max-w-sm mx-auto">
-        <h1 class="text-xl font-bold text-pink-600 mb-3">Hii pacarrkuu 💖</h1>
-        <p class="text-base text-gray-700 mb-1">aku punya sesuatuu nihh 🎁</p>
-        <p class="text-base text-gray-700 mb-3">penasarannn gakk? 😆</p>
-        <button onclick="nextSlide()" class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm">
-          Coba buka ➡️
-        </button>
-      </div>
-    </div>
-
-    <!-- SLIDE 2 -->
-    <div class="slide hidden flex flex-col items-center space-y-4" id="slide2">
-      <img src="and1.jpg" alt="Foto Pacar" 
-           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
-      <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text2" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
-      </div>
-      <button id="btn2" onclick="nextSlide()" 
-              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
-        Lanjutin yaa ➡️
-      </button>
-    </div>
-
-    <!-- SLIDE 3 -->
-    <div class="slide hidden flex flex-col items-center space-y-4" id="slide3">
-      <img src="and3.jpg" alt="Foto Pacar" 
-           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
-      <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text3" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
-      </div>
-      <button id="btn3" onclick="nextSlide()" 
-              class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm hidden">
-        Lanjut, masih kuat kann? ➡️
-      </button>
-    </div>
-
-    <!-- SLIDE 4 -->
-    <div class="slide hidden flex flex-col items-center space-y-4" id="slide4">
-      <img src="and4.jpg" alt="Foto Pacar" 
-           class="rounded-2xl border-2 border-purple-400 mb-3 w-48 sm:w-56 md:w-64"/>
-      <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text4" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
-      </div>
-      <button id="btn4" onclick="nextSlide()" 
-              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
-        Ada lagi nihh ➡️
-      </button>
-    </div>
-
-    <!-- SLIDE 5 (GIF KUE) -->
-    <div class="slide hidden flex flex-col items-center space-y-4" id="slide5">
-      <img src="birthday-6_256.gif" alt="Kue Ulang Tahun" 
-           class="rounded-2xl border-2 border-pink-400 mb-3 w-64 sm:w-72 md:w-80"/>
-      <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text5" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
       </div>
     </div>
 
@@ -190,10 +101,22 @@
       if (currentSlide < totalSlides) {
         currentSlide++;
         showSlide(currentSlide);
-        if (currentSlide === 2) { i2 = 0; typeWriter2(); }
-        if (currentSlide === 3) { i3 = 0; typeWriter3(); }
-        if (currentSlide === 4) { i4 = 0; typeWriter4(); }
-        if (currentSlide === 5) { i5 = 0; typeWriter5(); }
+        if (currentSlide === 2) {
+          i2 = 0;
+          typeWriter2();
+        }
+        if (currentSlide === 3) {
+          i3 = 0;
+          typeWriter3();
+        }
+        if (currentSlide === 4) {
+          i4 = 0;
+          typeWriter4();
+        }
+        if (currentSlide === 5) {
+          i5 = 0;
+          typeWriter5();
+        }
       }
     }
 
@@ -231,7 +154,7 @@
     }
 
     // Slide 4 typing
-    const text4 = "Dan tahukah kamuu? Dari banyaknya orang di dunia ini, yang paling aku syukuri itu ketemu sama kamu. Kamu udah jadi alasan kenapa aku bisa lebih semangat tiap harinya. Kamu itu hadiah terindah buat aku.";
+    const text4 = "Tapi tahu nggak sayang? Dari semua hal di dunia ini, yang paling berharga buat aku itu bukan harta, bukan barang mewah, tapi kamuu. Karena kamu adalah alasan aku terus semangat setiap harinya, tempat aku pulang, dan sosok yang selalu aku jaga selamanya. 💞";
     let i4 = 0;
     function typeWriter4() {
       const p = document.getElementById("text4");
@@ -247,7 +170,7 @@
     }
 
     // Slide 5 typing
-    const text5 = "Happy Birthday Sayangkuu 🎂💖 Semoga di tahun ini semua keinginanmu tercapai, selalu sehat, selalu bahagia, dan jangan pernah ragu kalau aku selalu ada buat kamu. Aku sayang banget sama kamu! 💕";
+    const text5 = "Selamat ulang tahun cintakuu 🎂💖 Semoga semua harapanmu tercapai, sehat selalu, panjang umur, dan tetap jadi kesayangan akuu sampai tua nanti. Aku beruntung banget bisa milikin kamu. Love youu more than anything! 💝";
     let i5 = 0;
     function typeWriter5() {
       const p = document.getElementById("text5");
@@ -261,22 +184,12 @@
       }
     }
 
-    // Confetti lebih meriah
+    // Confetti
     function fireConfetti() {
       var end = Date.now() + 1500;
       (function frame() {
-        confetti({
-          particleCount: 5,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 }
-        });
-        confetti({
-          particleCount: 5,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 }
-        });
+        confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+        confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
         if (Date.now() < end) {
           requestAnimationFrame(frame);
         }
@@ -287,4 +200,5 @@
   </script>
 </body>
 </html>
+
 
