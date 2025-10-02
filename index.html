@@ -87,6 +87,95 @@
     let currentSlide = 1;
     const totalSlides = 5;
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kado Ulang Tahun</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    /* Animasi fade in */
+    .fade {
+      animation: fadeIn 0.8s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
+
+  <div id="slides" class="w-full h-full flex flex-col items-center justify-center">
+
+    <!-- SLIDE 1 -->
+    <div class="slide text-center space-y-4" id="slide1">
+      <div class="bg-white shadow-xl rounded-2xl p-5 max-w-sm mx-auto">
+        <h1 class="text-xl font-bold text-pink-600 mb-3">Hii pacarrkuu 💖</h1>
+        <p class="text-base text-gray-700 mb-1">aku punya sesuatuu nihh 🎁</p>
+        <p class="text-base text-gray-700 mb-3">penasarannn gakk? 😆</p>
+        <button onclick="nextSlide()" class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm">
+          Coba buka ➡️
+        </button>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide hidden flex flex-col items-center space-y-4" id="slide2">
+      <img src="and1.jpg" alt="Foto Pacar" 
+           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
+      <div class="min-h-[200px] w-full max-w-xl px-3">
+        <p id="text2" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
+      </div>
+      <button id="btn2" onclick="nextSlide()" 
+              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
+        Lanjutin yaa ➡️
+      </button>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide hidden flex flex-col items-center space-y-4" id="slide3">
+      <img src="and3.jpg" alt="Foto Pacar" 
+           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
+      <div class="min-h-[200px] w-full max-w-xl px-3">
+        <p id="text3" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
+      </div>
+      <button id="btn3" onclick="nextSlide()" 
+              class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm hidden">
+        Lanjut, masih kuat kann? ➡️
+      </button>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="slide hidden flex flex-col items-center space-y-4" id="slide4">
+      <img src="and4.jpg" alt="Foto Pacar" 
+           class="rounded-2xl border-2 border-purple-400 mb-3 w-48 sm:w-56 md:w-64"/>
+      <div class="min-h-[200px] w-full max-w-xl px-3">
+        <p id="text4" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
+      </div>
+      <button id="btn4" onclick="nextSlide()" 
+              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
+        Ada lagi nihh ➡️
+      </button>
+    </div>
+
+    <!-- SLIDE 5 (GIF KUE) -->
+    <div class="slide hidden flex flex-col items-center space-y-4" id="slide5">
+      <img src="birthday-6_256.gif" alt="Kue Ulang Tahun" 
+           class="rounded-2xl border-2 border-pink-400 mb-3 w-64 sm:w-72 md:w-80"/>
+      <div class="min-h-[200px] w-full max-w-xl px-3">
+        <p id="text5" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 5;
+
     function showSlide(n) {
       document.querySelectorAll(".slide").forEach((slide, index) => {
         slide.classList.add("hidden");
@@ -109,7 +198,7 @@
     }
 
     // Slide 2 typing
-    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu...";
+    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaafkan. Diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa. Hal ituu wajar untuk seorang wanita dan itu juga menjadi tugasku untuk menenangkanya.";
     let i2 = 0;
     function typeWriter2() {
       const p = document.getElementById("text2");
@@ -125,7 +214,7 @@
     }
 
     // Slide 3 typing
-    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss...";
+    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. Aku barusan aja belajar biologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. Tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu. 💕";
     let i3 = 0;
     function typeWriter3() {
       const p = document.getElementById("text3");
@@ -137,11 +226,12 @@
         setTimeout(typeWriter3, 40);
       } else {
         btn.classList.remove("hidden");
+        setTimeout(() => { fireConfetti(); }, 500);
       }
     }
 
     // Slide 4 typing
-    const text4 = "Tapii kamu tau nggak? Aku tuh selalu bersyukur banget bisa punya kamu...";
+    const text4 = "Dan tahukah kamuu? Dari banyaknya orang di dunia ini, yang paling aku syukuri itu ketemu sama kamu. Kamu udah jadi alasan kenapa aku bisa lebih semangat tiap harinya. Kamu itu hadiah terindah buat aku.";
     let i4 = 0;
     function typeWriter4() {
       const p = document.getElementById("text4");
@@ -157,7 +247,7 @@
     }
 
     // Slide 5 typing
-    const text5 = "Happy Birthday cintakuuu 🎂🎉 Semoga hari ini penuh kebahagiaan, doa baik, dan cinta yang nggak pernah habis. Aku beruntung banget bisa rayain bareng kamuu 💕";
+    const text5 = "Happy Birthday Sayangkuu 🎂💖 Semoga di tahun ini semua keinginanmu tercapai, selalu sehat, selalu bahagia, dan jangan pernah ragu kalau aku selalu ada buat kamu. Aku sayang banget sama kamu! 💕";
     let i5 = 0;
     function typeWriter5() {
       const p = document.getElementById("text5");
@@ -171,13 +261,25 @@
       }
     }
 
-    // Confetti
+    // Confetti lebih meriah
     function fireConfetti() {
       var end = Date.now() + 1500;
       (function frame() {
-        confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
-        confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
-        if (Date.now() < end) requestAnimationFrame(frame);
+        confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+        confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
       })();
     }
 
@@ -185,3 +287,4 @@
   </script>
 </body>
 </html>
+
