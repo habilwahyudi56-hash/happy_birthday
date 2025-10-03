@@ -5,279 +5,198 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kado Ulang Tahun</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
-    .fade {
-      animation: fadeIn 0.8s ease-in-out;
+    body {
+      margin: 0;
+      overflow: hidden;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+    .slide {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
     }
-    #loveCanvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: black;
-      z-index: 10;
+    .active {
+      display: flex;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
+<body class="relative flex items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
 
-  <div id="slides" class="w-full min-h-screen flex flex-col items-center justify-center">
+  <!-- Canvas untuk love jatuh -->
+  <canvas id="loveBackground" class="absolute top-0 left-0 w-full h-full z-0"></canvas>
 
-    <!-- SLIDE 1 -->
-    <div class="slide text-center space-y-4" id="slide1">
-      <div class="bg-white shadow-xl rounded-2xl p-5 max-w-sm mx-auto">
-        <h1 class="text-xl font-bold text-pink-600 mb-3">Hii pacarrkuu 💖</h1>
-        <p class="text-base text-gray-700 mb-1">aku punya sesuatuu nihh 🎁</p>
-        <p class="text-base text-gray-700 mb-3">penasarannn gakk? 😆</p>
-        <button onclick="nextSlide()" class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm">
-          Coba buka ➡️
-        </button>
-      </div>
+  <div id="slides" class="relative z-10 w-full h-full flex flex-col items-center justify-center">
+
+    <!-- Slide 1 -->
+    <div class="slide active" id="slide1">
+      <h1 class="text-3xl font-bold text-pink-700">Happy Birthday Sayangku ❤️</h1>
+      <p class="mt-4 text-lg">Hari ini adalah hari spesialmu, semoga penuh kebahagiaan.</p>
+      <button onclick="nextSlide()" class="mt-6 px-6 py-2 bg-pink-500 text-white rounded-full">Lanjut</button>
     </div>
 
-    <!-- SLIDE 2 -->
-    <div class="slide hidden flex flex-col items-center space-y-4" id="slide2">
-      <img src="and1.jpg" alt="Foto Pacar"
-           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
-      <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text2" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
-      </div>
-      <button id="btn2" onclick="nextSlide()" 
-              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
-        Lanjutin yaa ➡️
-      </button>
+    <!-- Slide 2 -->
+    <div class="slide" id="slide2">
+      <h1 class="text-3xl font-bold text-purple-700">Kamu adalah Hadiah Terindah 🎁</h1>
+      <p class="mt-4 text-lg">Setiap momen bersamamu adalah anugerah yang tak ternilai.</p>
+      <button onclick="nextSlide()" class="mt-6 px-6 py-2 bg-purple-500 text-white rounded-full">Lanjut</button>
     </div>
 
-    <!-- SLIDE 3 -->
-    <div class="slide hidden flex flex-col items-center space-y-4" id="slide3">
-      <img src="and3.jpg" alt="Foto Pacar"
-           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
-      <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text3" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
-      </div>
-      <button id="btn3" onclick="nextSlide()" 
-              class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm hidden">
-        Lanjut, masih kuat kann? ➡️
-      </button>
+    <!-- Slide 3 -->
+    <div class="slide" id="slide3">
+      <h1 class="text-3xl font-bold text-red-700">Aku Bersyukur Memilikimu 💕</h1>
+      <p class="mt-4 text-lg">Kamu membuat hidupku lebih indah dan penuh warna.</p>
+      <button onclick="nextSlide()" class="mt-6 px-6 py-2 bg-red-500 text-white rounded-full">Lanjut</button>
     </div>
 
-    <!-- SLIDE 4 -->
-    <div class="slide hidden flex flex-col items-center space-y-4" id="slide4">
-      <img src="and4.jpg" alt="Foto Pacar"
-           class="rounded-2xl border-2 border-purple-400 mb-3 w-52 sm:w-60 md:w-72"/>
-      <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text4" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
-      </div>
-      <button id="btn4" onclick="nextSlide()" 
-              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
-        Terakhir nihh 🎉
-      </button>
+    <!-- Slide 4 -->
+    <div class="slide" id="slide4">
+      <h1 class="text-3xl font-bold text-pink-600">Doa Terbaik Untukmu 🌹</h1>
+      <p class="mt-4 text-lg">Semoga semua impianmu tercapai dan kebahagiaan selalu bersamamu.</p>
+      <button onclick="nextSlide()" class="mt-6 px-6 py-2 bg-pink-600 text-white rounded-full">Lanjut</button>
     </div>
 
-    <!-- SLIDE 5 -->
-    <div class="slide hidden flex flex-col items-center space-y-4" id="slide5">
-      <img src="birthday-6_256.gif" alt="Birthday Cake" onclick="nextSlide()"
-           class="rounded-2xl shadow-lg mb-3 w-64 sm:w-72 md:w-80 cursor-pointer"/>
-      <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text5" class="text-lg font-bold text-pink-700 mx-auto text-center"></p>
-      </div>
+    <!-- Slide 5 -->
+    <div class="slide" id="slide5">
+      <h1 class="text-3xl font-bold text-yellow-600">Selamat Ulang Tahun Sayang 🎂</h1>
+      <img src="birthday-6_256.gif" alt="Birthday Cake" class="mt-6 w-40 h-40 cursor-pointer" onclick="nextSlide()"/>
+      <p class="mt-4 text-lg">Semoga hari ini jadi hari paling indah untukmu.</p>
     </div>
 
-    <!-- SLIDE 6 (Love Particles + Falling Hearts) -->
-    <div class="slide hidden" id="slide6">
-      <canvas id="loveCanvas"></canvas>
+    <!-- Slide 6 (Partikel Love) -->
+    <div class="slide" id="slide6" style="background:black; color:white;">
+      <canvas id="heartCanvas"></canvas>
     </div>
-
   </div>
 
   <script>
     let currentSlide = 1;
-    const totalSlides = 6;
+    function nextSlide() {
+      document.getElementById(`slide${currentSlide}`).classList.remove("active");
+      currentSlide++;
+      if (currentSlide > 6) currentSlide = 1;
+      document.getElementById(`slide${currentSlide}`).classList.add("active");
 
-    function showSlide(n) {
-      document.querySelectorAll(".slide").forEach((slide, index) => {
-        slide.classList.add("hidden");
-        if (index === n - 1) {
-          slide.classList.remove("hidden");
-          slide.classList.add("fade");
-        }
+      if (currentSlide === 6) startHeartAnimation();
+    }
+
+    // Love jatuh di semua slide
+    const canvasBg = document.getElementById("loveBackground");
+    const ctxBg = canvasBg.getContext("2d");
+    canvasBg.width = window.innerWidth;
+    canvasBg.height = window.innerHeight;
+
+    let fallingHearts = [];
+    for (let i = 0; i < 40; i++) {
+      fallingHearts.push({
+        x: Math.random() * canvasBg.width,
+        y: Math.random() * canvasBg.height,
+        size: 10 + Math.random() * 20,
+        speed: 0.5 + Math.random() * 1.5,
+        color: "rgba(255,0,150,0.8)"
       });
     }
 
-    function nextSlide() {
-      if (currentSlide < totalSlides) {
-        currentSlide++;
-        showSlide(currentSlide);
-        if (currentSlide === 2) { i2 = 0; typeWriter2(); }
-        if (currentSlide === 3) { i3 = 0; typeWriter3(); }
-        if (currentSlide === 4) { i4 = 0; typeWriter4(); }
-        if (currentSlide === 5) { i5 = 0; typeWriter5(); }
-        if (currentSlide === 6) { startLoveParticles(); }
-      }
+    function drawHeart(ctx, x, y, size, color) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.scale(size/20, size/20);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(-10, -10, -20, 10, 0, 20);
+      ctx.bezierCurveTo(20, 10, 10, -10, 0, 0);
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.restore();
     }
 
-    // === Typewriter teks ===
-    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaafkan. Diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa. Hal ituu wajar untuk seorang wanita dan itu juga menjadi tugasku untuk menenangkanya.";
-    let i2 = 0;
-    function typeWriter2() {
-      const p = document.getElementById("text2");
-      const btn = document.getElementById("btn2");
-      if (i2 === 0) p.innerHTML = "";
-      if (i2 < text2.length) {
-        p.innerHTML += text2.charAt(i2);
-        i2++;
-        setTimeout(typeWriter2, 40);
-      } else { btn.classList.remove("hidden"); }
+    function animateBackground() {
+      ctxBg.clearRect(0, 0, canvasBg.width, canvasBg.height);
+      fallingHearts.forEach(h => {
+        drawHeart(ctxBg, h.x, h.y, h.size, h.color);
+        h.y += h.speed;
+        if (h.y > canvasBg.height + h.size) {
+          h.y = -h.size;
+          h.x = Math.random() * canvasBg.width;
+        }
+      });
+      requestAnimationFrame(animateBackground);
     }
+    animateBackground();
 
-    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. Aku barusan aja belajar biologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. Tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu. 💕";
-    let i3 = 0;
-    function typeWriter3() {
-      const p = document.getElementById("text3");
-      const btn = document.getElementById("btn3");
-      if (i3 === 0) p.innerHTML = "";
-      if (i3 < text3.length) {
-        p.innerHTML += text3.charAt(i3);
-        i3++;
-        setTimeout(typeWriter3, 40);
-      } else { btn.classList.remove("hidden"); fireConfetti(); }
-    }
+    window.addEventListener("resize", () => {
+      canvasBg.width = window.innerWidth;
+      canvasBg.height = window.innerHeight;
+    });
 
-    const text4 = "Tapi tahu nggak sayang? Dari semua hal di dunia ini, yang paling berharga buat aku itu bukan harta, bukan barang mewah, tapi kamuu. Karena kamu adalah alasan aku terus semangat setiap harinya, tempat aku pulang, dan sosok yang selalu aku jaga selamanya. 💞";
-    let i4 = 0;
-    function typeWriter4() {
-      const p = document.getElementById("text4");
-      const btn = document.getElementById("btn4");
-      if (i4 === 0) p.innerHTML = "";
-      if (i4 < text4.length) {
-        p.innerHTML += text4.charAt(i4);
-        i4++;
-        setTimeout(typeWriter4, 40);
-      } else { btn.classList.remove("hidden"); }
-    }
-
-    const text5 = "Selamat ulang tahun cintakuu 🎂💖 Semoga semua harapanmu tercapai, sehat selalu, panjang umur, dan tetap jadi kesayangan akuu sampai tua nanti. Aku beruntung banget bisa milikin kamu. Love youu more than anything! 💝";
-    let i5 = 0;
-    function typeWriter5() {
-      const p = document.getElementById("text5");
-      if (i5 === 0) p.innerHTML = "";
-      if (i5 < text5.length) {
-        p.innerHTML += text5.charAt(i5);
-        i5++;
-        setTimeout(typeWriter5, 40);
-      } else { fireConfetti(); }
-    }
-
-    // === Confetti ===
-    function fireConfetti() {
-      var end = Date.now() + 1500;
-      (function frame() {
-        confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
-        confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
-        if (Date.now() < end) requestAnimationFrame(frame);
-      })();
-    }
-
-    // === Slide 6 : Love Particles + Falling Hearts ===
-    function startLoveParticles() {
-      const canvas = document.getElementById("loveCanvas");
+    // Partikel membentuk LOVE di slide 6
+    function startHeartAnimation() {
+      const canvas = document.getElementById("heartCanvas");
       const ctx = canvas.getContext("2d");
-      resizeCanvas();
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
 
       let particles = [];
-      let fallingHearts = [];
-      const totalParticles = 800;
+      const total = 800;
+      const duration = 10000; // 10 detik
 
-      // fungsi bentuk love
-      function heartFunction(t, scale) {
-        return {
-          x: 16 * Math.pow(Math.sin(t), 3) * scale,
-          y: -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t)) * scale
-        };
+      function heartFunction(t) {
+        let x = 16 * Math.pow(Math.sin(t), 3);
+        let y = 13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t);
+        return {x, y};
       }
 
-      // titik target berbentuk love
-      const heartPoints = [];
-      const scale = Math.min(canvas.width, canvas.height) / 40;
-      for (let i = 0; i < totalParticles; i++) {
-        const t = Math.random() * Math.PI * 2;
-        const point = heartFunction(t, scale);
-        heartPoints.push({
-          x: canvas.width/2 + point.x,
-          y: canvas.height/2 + point.y
-        });
+      let heartPoints = [];
+      for (let i = 0; i < 360; i += 2) {
+        let p = heartFunction(i * Math.PI / 180);
+        heartPoints.push(p);
       }
 
-      // partikel awal random
-      for (let i = 0; i < totalParticles; i++) {
+      heartPoints = heartPoints.map(p => ({
+        x: canvas.width/2 + p.x * 20,
+        y: canvas.height/2 - p.y * 20
+      }));
+
+      for (let i = 0; i < total; i++) {
+        let target = heartPoints[i % heartPoints.length];
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          tx: heartPoints[i].x,
-          ty: heartPoints[i].y,
-          size: 2 + Math.random()*2,
-          color: `hsl(${Math.random()*360},80%,60%)`
+          tx: target.x,
+          ty: target.y,
+          size: 2 + Math.random() * 3,
+          progress: 0
         });
       }
 
-      // hearts jatuh random
-      for (let i = 0; i < 40; i++) {
-        fallingHearts.push({
-          x: Math.random()*canvas.width,
-          y: Math.random()*canvas.height,
-          size: 10+Math.random()*20,
-          speed: 0.5+Math.random()*1.5,
-          color: "rgba(255,105,180,0.7)"
-        });
-      }
-
-      let startTime = null;
-      function animate(timestamp) {
-        if (!startTime) startTime = timestamp;
-        const elapsed = (timestamp - startTime) / 1000;
-
+      const start = Date.now();
+      function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let elapsed = Date.now() - start;
+        let t = Math.min(elapsed / duration, 1);
 
-        // partikel membentuk love
         particles.forEach(p => {
-          let t = Math.min(elapsed / 10, 1);
-          p.x = p.x + (p.tx - p.x) * t * 0.02;
-          p.y = p.y + (p.ty - p.y) * t * 0.02;
-          ctx.fillStyle = p.color;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
-          ctx.fill();
+          p.progress = t;
+          let x = p.x + (p.tx - p.x) * t;
+          let y = p.y + (p.ty - p.y) * t;
+          drawHeart(ctx, x, y, p.size*3, "red");
         });
 
-        // animasi hearts jatuh
-        fallingHearts.forEach(h => {
-          ctx.fillStyle = h.color;
-          ctx.beginPath();
-          ctx.arc(h.x, h.y, h.size/2, 0, Math.PI*2);
-          ctx.fill();
-          h.y += h.speed;
-          if (h.y > canvas.height + h.size) {
-            h.y = -h.size;
-            h.x = Math.random()*canvas.width;
-          }
-        });
-
-        requestAnimationFrame(animate);
+        if (t < 1) requestAnimationFrame(animate);
       }
-      requestAnimationFrame(animate);
-
-      window.addEventListener("resize", resizeCanvas);
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
+      animate();
     }
-
-    showSlide(currentSlide);
   </script>
 </body>
 </html>
+
