@@ -14,13 +14,10 @@
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
     }
-    /* Canvas partikel full screen */
     #loveCanvas {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       background: black;
       z-index: 10;
     }
@@ -81,7 +78,7 @@
       </button>
     </div>
 
-    <!-- SLIDE 5 (GIF Kue Ulang Tahun) -->
+    <!-- SLIDE 5 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide5">
       <img src="birthday-6_256.gif" alt="Birthday Cake" onclick="nextSlide()"
            class="rounded-2xl shadow-lg mb-3 w-64 sm:w-72 md:w-80 cursor-pointer"/>
@@ -90,7 +87,7 @@
       </div>
     </div>
 
-    <!-- SLIDE 6 (Canvas Love) -->
+    <!-- SLIDE 6 (Love Particles + Falling Hearts) -->
     <div class="slide hidden" id="slide6">
       <canvas id="loveCanvas"></canvas>
     </div>
@@ -123,7 +120,7 @@
       }
     }
 
-    // Slide 2 typing
+    // === Typewriter teks ===
     const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaafkan. Diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa. Hal ituu wajar untuk seorang wanita dan itu juga menjadi tugasku untuk menenangkanya.";
     let i2 = 0;
     function typeWriter2() {
@@ -134,12 +131,9 @@
         p.innerHTML += text2.charAt(i2);
         i2++;
         setTimeout(typeWriter2, 40);
-      } else {
-        btn.classList.remove("hidden");
-      }
+      } else { btn.classList.remove("hidden"); }
     }
 
-    // Slide 3 typing
     const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. Aku barusan aja belajar biologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. Tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu. 💕";
     let i3 = 0;
     function typeWriter3() {
@@ -150,13 +144,9 @@
         p.innerHTML += text3.charAt(i3);
         i3++;
         setTimeout(typeWriter3, 40);
-      } else {
-        btn.classList.remove("hidden");
-        setTimeout(() => { fireConfetti(); }, 500);
-      }
+      } else { btn.classList.remove("hidden"); fireConfetti(); }
     }
 
-    // Slide 4 typing
     const text4 = "Tapi tahu nggak sayang? Dari semua hal di dunia ini, yang paling berharga buat aku itu bukan harta, bukan barang mewah, tapi kamuu. Karena kamu adalah alasan aku terus semangat setiap harinya, tempat aku pulang, dan sosok yang selalu aku jaga selamanya. 💞";
     let i4 = 0;
     function typeWriter4() {
@@ -167,12 +157,9 @@
         p.innerHTML += text4.charAt(i4);
         i4++;
         setTimeout(typeWriter4, 40);
-      } else {
-        btn.classList.remove("hidden");
-      }
+      } else { btn.classList.remove("hidden"); }
     }
 
-    // Slide 5 typing
     const text5 = "Selamat ulang tahun cintakuu 🎂💖 Semoga semua harapanmu tercapai, sehat selalu, panjang umur, dan tetap jadi kesayangan akuu sampai tua nanti. Aku beruntung banget bisa milikin kamu. Love youu more than anything! 💝";
     let i5 = 0;
     function typeWriter5() {
@@ -182,33 +169,30 @@
         p.innerHTML += text5.charAt(i5);
         i5++;
         setTimeout(typeWriter5, 40);
-      } else {
-        setTimeout(() => { fireConfetti(); }, 500);
-      }
+      } else { fireConfetti(); }
     }
 
-    // Confetti
+    // === Confetti ===
     function fireConfetti() {
       var end = Date.now() + 1500;
       (function frame() {
         confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
         confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
-        }
+        if (Date.now() < end) requestAnimationFrame(frame);
       })();
     }
 
-    // Slide 6 - Partikel Love
+    // === Slide 6 : Love Particles + Falling Hearts ===
     function startLoveParticles() {
       const canvas = document.getElementById("loveCanvas");
       const ctx = canvas.getContext("2d");
       resizeCanvas();
 
       let particles = [];
+      let fallingHearts = [];
       const totalParticles = 800;
 
-      // bentuk love responsif
+      // fungsi bentuk love
       function heartFunction(t, scale) {
         return {
           x: 16 * Math.pow(Math.sin(t), 3) * scale,
@@ -216,7 +200,7 @@
         };
       }
 
-      // generate target koordinat berbentuk love
+      // titik target berbentuk love
       const heartPoints = [];
       const scale = Math.min(canvas.width, canvas.height) / 40;
       for (let i = 0; i < totalParticles; i++) {
@@ -228,7 +212,7 @@
         });
       }
 
-      // generate partikel awal random
+      // partikel awal random
       for (let i = 0; i < totalParticles; i++) {
         particles.push({
           x: Math.random() * canvas.width,
@@ -236,26 +220,50 @@
           tx: heartPoints[i].x,
           ty: heartPoints[i].y,
           size: 2 + Math.random()*2,
-          color: `hsl(${Math.random()*360},80%,60%)`,
-          progress: 0
+          color: `hsl(${Math.random()*360},80%,60%)`
+        });
+      }
+
+      // hearts jatuh random
+      for (let i = 0; i < 40; i++) {
+        fallingHearts.push({
+          x: Math.random()*canvas.width,
+          y: Math.random()*canvas.height,
+          size: 10+Math.random()*20,
+          speed: 0.5+Math.random()*1.5,
+          color: "rgba(255,105,180,0.7)"
         });
       }
 
       let startTime = null;
       function animate(timestamp) {
         if (!startTime) startTime = timestamp;
-        const elapsed = (timestamp - startTime) / 1000; // detik
+        const elapsed = (timestamp - startTime) / 1000;
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+        // partikel membentuk love
         particles.forEach(p => {
-          let t = Math.min(elapsed / 10, 1); // 10 detik durasi
+          let t = Math.min(elapsed / 10, 1);
           p.x = p.x + (p.tx - p.x) * t * 0.02;
           p.y = p.y + (p.ty - p.y) * t * 0.02;
           ctx.fillStyle = p.color;
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
           ctx.fill();
+        });
+
+        // animasi hearts jatuh
+        fallingHearts.forEach(h => {
+          ctx.fillStyle = h.color;
+          ctx.beginPath();
+          ctx.arc(h.x, h.y, h.size/2, 0, Math.PI*2);
+          ctx.fill();
+          h.y += h.speed;
+          if (h.y > canvas.height + h.size) {
+            h.y = -h.size;
+            h.x = Math.random()*canvas.width;
+          }
         });
 
         requestAnimationFrame(animate);
