@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +7,36 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
-    /* Animasi fade in */
+    /* Animasi gradien background */
+    body {
+      background: linear-gradient(-45deg, #ffafbd, #ffc3a0, #d9a7c7, #fffcdc);
+      background-size: 400% 400%;
+      animation: gradientMove 12s ease infinite;
+    }
+    @keyframes gradientMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    /* Efek hati jatuh */
+    .heart {
+      position: fixed;
+      top: -10px;
+      font-size: 20px;
+      color: rgba(255, 0, 100, 0.7);
+      animation: fall linear forwards;
+      z-index: 0;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Animasi fade untuk slide */
     .fade {
       animation: fadeIn 0.8s ease-in-out;
     }
@@ -17,11 +46,10 @@
     }
   </style>
 </head>
-<body class="flex items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
+<body class="flex items-center justify-center h-screen overflow-hidden">
 
-  <div id="slides" class="w-full h-full flex flex-col items-center justify-center">
-
-    <!-- SLIDE 1 -->
+  <div id="slides" class="w-full h-full flex flex-col items-center justify-center relative z-10">
+    <!-- Slide 1 -->
     <div class="slide text-center space-y-4" id="slide1">
       <div class="bg-white shadow-xl rounded-2xl p-5 max-w-sm mx-auto">
         <h1 class="text-xl font-bold text-pink-600 mb-3">Hii pacarrkuu 💖</h1>
@@ -33,54 +61,46 @@
       </div>
     </div>
 
-    <!-- SLIDE 2 -->
+    <!-- Slide 2 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide2">
-      <img src="and1.jpg" alt="Foto Pacar"
-           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
+      <img src="and1.jpg" alt="Foto Pacar" class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text2" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
       </div>
-      <button id="btn2" onclick="nextSlide()" 
-              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
+      <button id="btn2" onclick="nextSlide()" class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
         Lanjutin yaa ➡️
       </button>
     </div>
 
-    <!-- SLIDE 3 -->
+    <!-- Slide 3 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide3">
-      <img src="and3.jpg" alt="Foto Pacar"
-           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
+      <img src="and3.jpg" alt="Foto Pacar" class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text3" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
       </div>
-      <button id="btn3" onclick="nextSlide()" 
-              class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm hidden">
+      <button id="btn3" onclick="nextSlide()" class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm hidden">
         Lanjut, masih kuat kann? ➡️
       </button>
     </div>
 
-    <!-- SLIDE 4 -->
+    <!-- Slide 4 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide4">
-      <img src="and4.jpg" alt="Foto Pacar"
-           class="rounded-2xl border-2 border-purple-400 mb-3 w-52 sm:w-60 md:w-72"/>
+      <img src="and2.jpg" alt="Foto Pacar" class="rounded-2xl border-2 border-purple-400 mb-3 w-52 sm:w-60 md:w-72"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text4" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
       </div>
-      <button id="btn4" onclick="nextSlide()" 
-              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
+      <button id="btn4" onclick="nextSlide()" class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
         Terakhir nihh 🎉
       </button>
     </div>
 
-    <!-- SLIDE 5 (GIF Kue Ulang Tahun) -->
+    <!-- Slide 5 (Gif Kue) -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide5">
-      <img src="birthday-6_256.gif" alt="Birthday Cake"
-           class="rounded-2xl shadow-lg mb-3 w-64 sm:w-72 md:w-80"/>
+      <img src="birthday-6_256.gif" alt="Birthday Cake" class="rounded-2xl shadow-lg mb-3 w-72 sm:w-80 md:w-96"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text5" class="text-lg font-bold text-pink-700 mx-auto text-center"></p>
       </div>
     </div>
-
   </div>
 
   <script>
@@ -101,27 +121,15 @@
       if (currentSlide < totalSlides) {
         currentSlide++;
         showSlide(currentSlide);
-        if (currentSlide === 2) {
-          i2 = 0;
-          typeWriter2();
-        }
-        if (currentSlide === 3) {
-          i3 = 0;
-          typeWriter3();
-        }
-        if (currentSlide === 4) {
-          i4 = 0;
-          typeWriter4();
-        }
-        if (currentSlide === 5) {
-          i5 = 0;
-          typeWriter5();
-        }
+        if (currentSlide === 2) { i2 = 0; typeWriter2(); }
+        if (currentSlide === 3) { i3 = 0; typeWriter3(); }
+        if (currentSlide === 4) { i4 = 0; typeWriter4(); }
+        if (currentSlide === 5) { i5 = 0; typeWriter5(); }
       }
     }
 
-    // Slide 2 typing
-    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaafkan. Diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa. Hal ituu wajar untuk seorang wanita dan itu juga menjadi tugasku untuk menenangkanya.";
+    // Typing effect text2
+    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu...";
     let i2 = 0;
     function typeWriter2() {
       const p = document.getElementById("text2");
@@ -136,8 +144,8 @@
       }
     }
 
-    // Slide 3 typing
-    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. Aku barusan aja belajar biologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. Tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu. 💕";
+    // Typing effect text3
+    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt...";
     let i3 = 0;
     function typeWriter3() {
       const p = document.getElementById("text3");
@@ -153,8 +161,8 @@
       }
     }
 
-    // Slide 4 typing
-    const text4 = "Tapi tahu nggak sayang? Dari semua hal di dunia ini, yang paling berharga buat aku itu bukan harta, bukan barang mewah, tapi kamuu. Karena kamu adalah alasan aku terus semangat setiap harinya, tempat aku pulang, dan sosok yang selalu aku jaga selamanya. 💞";
+    // Typing effect text4
+    const text4 = "Tapi tahu nggak sayang? Dari semua hal...";
     let i4 = 0;
     function typeWriter4() {
       const p = document.getElementById("text4");
@@ -169,8 +177,8 @@
       }
     }
 
-    // Slide 5 typing
-    const text5 = "Selamat ulang tahun cintakuu 🎂💖 Semoga semua harapanmu tercapai, sehat selalu, panjang umur, dan tetap jadi kesayangan akuu sampai tua nanti. Aku beruntung banget bisa milikin kamu. Love youu more than anything! 💝";
+    // Typing effect text5
+    const text5 = "Selamat ulang tahun cintakuu 🎂💖...";
     let i5 = 0;
     function typeWriter5() {
       const p = document.getElementById("text5");
@@ -196,9 +204,19 @@
       })();
     }
 
+    // Efek hati jatuh
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 5) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => { heart.remove(); }, 8000);
+    }
+    setInterval(createHeart, 500);
+
     showSlide(currentSlide);
   </script>
 </body>
 </html>
-
-
