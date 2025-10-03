@@ -1,4 +1,4 @@
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
@@ -7,36 +7,19 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
-    /* Animasi gradien background */
+    /* Gradien animasi background */
     body {
-      background: linear-gradient(-45deg, #ffafbd, #ffc3a0, #d9a7c7, #fffcdc);
-      background-size: 400% 400%;
-      animation: gradientMove 12s ease infinite;
+      background: linear-gradient(270deg, #fbc2eb, #a18cd1, #fdfbfb, #fccb90);
+      background-size: 800% 800%;
+      animation: gradientBG 18s ease infinite;
     }
-    @keyframes gradientMove {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
-
-    /* Efek hati jatuh */
-    .heart {
-      position: fixed;
-      top: -10px;
-      font-size: 20px;
-      color: rgba(255, 0, 100, 0.7);
-      animation: fall linear forwards;
-      z-index: 0;
-      pointer-events: none;
-    }
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
+    @keyframes gradientBG {
+      0% {background-position:0% 50%}
+      50% {background-position:100% 50%}
+      100% {background-position:0% 50%}
     }
 
-    /* Animasi fade untuk slide */
+    /* Animasi fade in slide */
     .fade {
       animation: fadeIn 0.8s ease-in-out;
     }
@@ -44,12 +27,29 @@
       from { opacity: 0; transform: scale(0.95); }
       to { opacity: 1; transform: scale(1); }
     }
+
+    /* Hati jatuh */
+    .heart {
+      position: fixed;
+      top: -10px;
+      font-size: 20px;
+      color: rgba(255, 105, 180, 0.8);
+      animation: fall linear forwards;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body class="flex items-center justify-center h-screen overflow-hidden">
 
+  <!-- Container slides -->
   <div id="slides" class="w-full h-full flex flex-col items-center justify-center relative z-10">
-    <!-- Slide 1 -->
+
+    <!-- SLIDE 1 -->
     <div class="slide text-center space-y-4" id="slide1">
       <div class="bg-white shadow-xl rounded-2xl p-5 max-w-sm mx-auto">
         <h1 class="text-xl font-bold text-pink-600 mb-3">Hii pacarrkuu 💖</h1>
@@ -61,46 +61,54 @@
       </div>
     </div>
 
-    <!-- Slide 2 -->
+    <!-- SLIDE 2 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide2">
-      <img src="and1.jpg" alt="Foto Pacar" class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
+      <img src="and1.jpg" alt="Foto Pacar"
+           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64 transition-transform duration-500 hover:scale-105"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text2" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
       </div>
-      <button id="btn2" onclick="nextSlide()" class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
+      <button id="btn2" onclick="nextSlide()" 
+              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
         Lanjutin yaa ➡️
       </button>
     </div>
 
-    <!-- Slide 3 -->
+    <!-- SLIDE 3 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide3">
-      <img src="and3.jpg" alt="Foto Pacar" class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
+      <img src="and3.jpg" alt="Foto Pacar"
+           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64 transition-transform duration-500 hover:scale-105"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text3" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
       </div>
-      <button id="btn3" onclick="nextSlide()" class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm hidden">
+      <button id="btn3" onclick="nextSlide()" 
+              class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm hidden">
         Lanjut, masih kuat kann? ➡️
       </button>
     </div>
 
-    <!-- Slide 4 -->
+    <!-- SLIDE 4 -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide4">
-      <img src="and2.jpg" alt="Foto Pacar" class="rounded-2xl border-2 border-purple-400 mb-3 w-52 sm:w-60 md:w-72"/>
+      <img src="and4.jpg" alt="Foto Pacar"
+           class="rounded-2xl border-2 border-purple-400 mb-3 w-52 sm:w-60 md:w-72 transition-transform duration-500 hover:scale-105"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text4" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
       </div>
-      <button id="btn4" onclick="nextSlide()" class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
+      <button id="btn4" onclick="nextSlide()" 
+              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
         Terakhir nihh 🎉
       </button>
     </div>
 
-    <!-- Slide 5 (Gif Kue) -->
+    <!-- SLIDE 5 (GIF Kue Ulang Tahun) -->
     <div class="slide hidden flex flex-col items-center space-y-4" id="slide5">
-      <img src="birthday-6_256.gif" alt="Birthday Cake" class="rounded-2xl shadow-lg mb-3 w-72 sm:w-80 md:w-96"/>
+      <img src="birthday-6_256.gif" alt="Birthday Cake"
+           class="rounded-2xl shadow-lg mb-3 w-64 sm:w-72 md:w-80"/>
       <div class="min-h-[200px] w-full max-w-xl px-3">
         <p id="text5" class="text-lg font-bold text-pink-700 mx-auto text-center"></p>
       </div>
     </div>
+
   </div>
 
   <script>
@@ -128,8 +136,8 @@
       }
     }
 
-    // Typing effect text2
-    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu...";
+    // Slide 2 typing
+    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering buat dia marah tapi dia tetap sabar dan mau memaafkan. Diaa adalah wanita lucuu, selalu riang gembira dan penyayang walau kadang ia sering menangis karena masalah tertentu, namun tidak apa apa. Hal ituu wajar untuk seorang wanita dan itu juga menjadi tugasku untuk menenangkanya.";
     let i2 = 0;
     function typeWriter2() {
       const p = document.getElementById("text2");
@@ -144,8 +152,8 @@
       }
     }
 
-    // Typing effect text3
-    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt...";
+    // Slide 3 typing
+    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss, seneng bangett bisa ngemilikin kamuu. Aku barusan aja belajar biologi tauu, katanya kamu itu adalah 7% darah, 70% air, 99% ruang hampa. Tapi sih yaa kalau menurut aku kamu ituu 100% kesayangan kuu. 💕";
     let i3 = 0;
     function typeWriter3() {
       const p = document.getElementById("text3");
@@ -161,8 +169,8 @@
       }
     }
 
-    // Typing effect text4
-    const text4 = "Tapi tahu nggak sayang? Dari semua hal...";
+    // Slide 4 typing
+    const text4 = "Tapi tahu nggak sayang? Dari semua hal di dunia ini, yang paling berharga buat aku itu bukan harta, bukan barang mewah, tapi kamuu. Karena kamu adalah alasan aku terus semangat setiap harinya, tempat aku pulang, dan sosok yang selalu aku jaga selamanya. 💞";
     let i4 = 0;
     function typeWriter4() {
       const p = document.getElementById("text4");
@@ -177,8 +185,8 @@
       }
     }
 
-    // Typing effect text5
-    const text5 = "Selamat ulang tahun cintakuu 🎂💖...";
+    // Slide 5 typing
+    const text5 = "Selamat ulang tahun cintakuu 🎂💖 Semoga semua harapanmu tercapai, sehat selalu, panjang umur, dan tetap jadi kesayangan akuu sampai tua nanti. Aku beruntung banget bisa milikin kamu. Love youu more than anything! 💝";
     let i5 = 0;
     function typeWriter5() {
       const p = document.getElementById("text5");
@@ -207,16 +215,17 @@
     // Efek hati jatuh
     function createHeart() {
       const heart = document.createElement("div");
-      heart.classList.add("heart");
-      heart.innerHTML = "💖";
+      heart.className = "heart";
+      heart.innerText = "💖";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (3 + Math.random() * 5) + "s";
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
       document.body.appendChild(heart);
-      setTimeout(() => { heart.remove(); }, 8000);
+      setTimeout(() => heart.remove(), 6000);
     }
-    setInterval(createHeart, 500);
+    setInterval(createHeart, 800);
 
     showSlide(currentSlide);
   </script>
 </body>
-</html>
+              </html>
+              
