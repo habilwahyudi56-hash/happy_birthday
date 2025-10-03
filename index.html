@@ -7,14 +7,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
-    body {
-      margin: 0;
-      overflow: hidden;
-    }
+    body { margin:0; overflow:hidden; }
     .fade { animation: fadeIn 0.8s ease-in-out; }
     @keyframes fadeIn { from {opacity:0; transform:scale(0.95);} to {opacity:1; transform:scale(1);} }
 
-    /* Canvas untuk partikel */
     #loveCanvas {
       position: fixed;
       top: 0; left: 0;
@@ -122,8 +118,8 @@
       }
     }
 
-    // Typing teks (sama kayak versi kamu, gak diubah)
-    const text2 = "Kamuu kenall ini nggak?..."; // isi sama kayak punyamu
+    // Typing efek (kata-kata kamu tetap utuh)
+    const text2 = "Kamuu kenall ini nggak?..."; 
     let i2=0; function typeWriter2(){const p=document.getElementById("text2");const btn=document.getElementById("btn2");if(i2===0)p.innerHTML="";if(i2<text2.length){p.innerHTML+=text2.charAt(i2);i2++;setTimeout(typeWriter2,40);}else{btn.classList.remove("hidden");}}
 
     const text3 = "Lihat inii...... Lucu kann,..."; 
@@ -148,7 +144,7 @@
 
     showSlide(currentSlide);
 
-    // --- SLIDE 6: Partikel LOVE ---
+    // SLIDE 6: Love dengan delay 5 detik
     function showLoveCanvas(){
       document.getElementById("slides").style.display="none";
       const canvas=document.getElementById("loveCanvas");
@@ -158,20 +154,17 @@
       canvas.height=window.innerHeight;
 
       const particles=[];
-      const num=800;
-
-      // buat partikel random
+      const num=700;
       for(let i=0;i<num;i++){
         particles.push({
           x:Math.random()*canvas.width,
           y:Math.random()*canvas.height,
-          tx:0, ty:0, // target love
+          tx:0, ty:0,
           size:2+Math.random()*2,
-          speed:0.05+Math.random()*0.05
+          speed:0.01+Math.random()*0.02 // lambat (≈5 detik)
         });
       }
 
-      // generate titik LOVE pakai persamaan parametris
       const heartPoints=[];
       for(let t=0;t<Math.PI*2;t+=0.05){
         let x=16*Math.pow(Math.sin(t),3);
@@ -179,11 +172,11 @@
         heartPoints.push({x,y});
       }
 
-      // scale dan pusatkan love
+      // Scale adaptif biar tidak kepotong di HP
+      let scale = Math.min(canvas.width, canvas.height) / 40;
       heartPoints.forEach((p,i)=>{
-        p.x=canvas.width/2 + p.x*20;
-        p.y=canvas.height/2 - p.y*20;
-        // assign target ke partikel
+        p.x=canvas.width/2 + p.x*scale;
+        p.y=canvas.height/2 - p.y*scale;
         if(particles[i]){
           particles[i].tx=p.x;
           particles[i].ty=p.y;
@@ -191,7 +184,7 @@
       });
 
       function animate(){
-        ctx.fillStyle="rgba(0,0,0,0.2)";
+        ctx.fillStyle="rgba(0,0,0,0.25)";
         ctx.fillRect(0,0,canvas.width,canvas.height);
         ctx.fillStyle="pink";
         particles.forEach(p=>{
@@ -208,4 +201,3 @@
   </script>
 </body>
 </html>
-
