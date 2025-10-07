@@ -20,31 +20,44 @@
       to { opacity: 1; transform: scale(1) translateY(0); }
     }
     .slide {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  padding-top: 2.5rem; /* jarak dari atas */
-  padding-left: 1rem;
-  padding-right: 1rem;
-  text-align: center;
+      min-height: 100vh;
+      width: 100%;
+      padding: 1rem;
+      text-align: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: none;
+    }
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .typewriter-text {
       line-height: 1.6;
       word-break: break-word;
-      margin-bottom: 0.75rem;
+    }
+    .heart-glow {
+      filter: drop-shadow(0 0 10px rgba(255, 0, 150, 0.5));
     }
     .photo-img {
-      width: 220px;
       height: auto;
-      margin-bottom: 0.75rem;
-      border-radius: 1rem;
-      border: 4px solid #f472b6;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      margin-bottom: 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
+    #slide1, #slide6 {
+      justify-content: center;
+    }
+    #slide2, #slide3, #slide4, #slide5 {
+      justify-content: flex-start;
+      padding-top: 2rem;
+    }
+    #slide2 .photo-img { width: 150px; } /* Gambar kecil khusus slide 2 */
+    #slide3 .photo-img, #slide4 .photo-img { width: 200px; }
+    #slide5 .photo-img { width: 180px; }
     button {
-      margin-top: 0.3rem;
+      margin-top: 0.5rem;
     }
     #loveCanvas {
       position: fixed;
@@ -56,14 +69,11 @@
       pointer-events: none;
     }
     #slides {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  min-height: 100vh;
-  display: block;
-  overflow-y: auto;
-  padding-top: 1.5rem;
-}
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100vh;
+    }
   </style>
 </head>
 
@@ -72,56 +82,57 @@
   <canvas id="loveCanvas"></canvas>
   <audio id="bgMusic" src="laguweb.mp3" preload="auto"></audio>
 
-  <div id="slides" class="w-full h-screen flex flex-col items-center justify-center">
+  <div id="slides">
 
     <!-- SLIDE 1 -->
-    <div class="slide fade" id="slide1">
+    <div class="slide active fade" id="slide1">
       <h1 class="text-2xl sm:text-3xl font-bold text-pink-600 heart-glow mb-2">Hii pacarrkuu 💖</h1>
       <p class="text-lg sm:text-xl text-gray-700">aku punya sesuatuu nihh 🎁</p>
       <p class="text-lg sm:text-xl text-gray-700 mb-2">penasarannn gakk? 😆</p>
-      <button onclick="nextSlide()" class="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 text-base font-semibold transform hover:scale-105">
+      <button onclick="nextSlide()"
+        class="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-2xl shadow-lg hover:shadow-xl hover:from-pink-600 hover:to-purple-600 transition-all duration-300 text-base font-semibold transform hover:scale-105">
         Coba buka ➡️
       </button>
     </div>
 
     <!-- SLIDE 2 -->
-    <div class="slide hidden" id="slide2">
-      <img src="and1.jpg" alt="Foto Pacar" class="photo-img heart-glow"/>
-      <p id="text2" class="text-lg sm:text-xl font-semibold text-pink-700 typewriter-text"></p>
-      <button id="btn2" onclick="nextSlide()" class="hidden px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl shadow-lg transition-all duration-300 font-semibold transform hover:scale-105">
+    <div class="slide" id="slide2">
+      <img src="and1.jpg" alt="Foto Pacar" class="rounded-3xl border-4 border-pink-400 photo-img heart-glow"/>
+      <p id="text2" class="text-lg sm:text-xl font-semibold text-pink-700 typewriter-text leading-relaxed"></p>
+      <button id="btn2" onclick="nextSlide()" class="hidden px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold transform hover:scale-105">
         Lanjutin yaa ➡️
       </button>
     </div>
 
     <!-- SLIDE 3 -->
-    <div class="slide hidden" id="slide3">
-      <img src="and3.jpg" alt="Foto Pacar" class="photo-img heart-glow"/>
-      <p id="text3" class="text-lg sm:text-xl font-semibold text-purple-700 typewriter-text"></p>
-      <button id="btn3" onclick="nextSlide()" class="hidden px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-2xl shadow-lg transition-all duration-300 font-semibold transform hover:scale-105">
+    <div class="slide" id="slide3">
+      <img src="and3.jpg" alt="Foto Pacar" class="rounded-3xl border-4 border-purple-400 photo-img heart-glow"/>
+      <p id="text3" class="text-lg sm:text-xl font-semibold text-purple-700 typewriter-text leading-relaxed"></p>
+      <button id="btn3" onclick="nextSlide()" class="hidden px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold transform hover:scale-105">
         Lanjut lagi yaaa ➡️
       </button>
     </div>
 
     <!-- SLIDE 4 -->
-    <div class="slide hidden" id="slide4">
-      <img src="and2.jpg" alt="Foto Pacar" class="photo-img heart-glow"/>
-      <p id="text4" class="text-lg sm:text-xl font-semibold text-pink-700 typewriter-text"></p>
-      <button id="btn4" onclick="nextSlide()" class="hidden px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl shadow-lg transition-all duration-300 font-semibold transform hover:scale-105">
+    <div class="slide" id="slide4">
+      <img src="and2.jpg" alt="Foto Pacar" class="rounded-3xl border-4 border-pink-400 photo-img heart-glow"/>
+      <p id="text4" class="text-lg sm:text-xl font-semibold text-pink-700 typewriter-text leading-relaxed"></p>
+      <button id="btn4" onclick="nextSlide()" class="hidden px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 font-semibold transform hover:scale-105">
         Terakhir nihh 🎉
       </button>
     </div>
 
     <!-- SLIDE 5 -->
-    <div class="slide hidden" id="slide5">
-      <img src="birthday-6_256.gif" alt="Birthday Cake" class="rounded-3xl shadow-2xl w-44 sm:w-52 md:w-60 cursor-pointer heart-glow transform hover:scale-105 transition-transform duration-300"
+    <div class="slide" id="slide5">
+      <img src="birthday-6_256.gif" alt="Birthday Cake" class="rounded-3xl shadow-2xl w-44 sm:w-52 cursor-pointer heart-glow transform hover:scale-105 transition-transform duration-300"
         onclick="stopMusic(); nextSlide();"/>
-      <p id="text5" class="text-xl sm:text-2xl font-bold text-pink-700 typewriter-text"></p>
+      <p id="text5" class="text-xl sm:text-2xl font-bold text-pink-700 typewriter-text leading-relaxed"></p>
       <p class="text-sm text-gray-500 italic">Klik kue nya sayanggg 🍰</p>
     </div>
 
     <!-- SLIDE 6 -->
-    <div class="slide hidden bg-gradient-to-br from-black via-purple-900 to-pink-900 relative overflow-hidden" id="slide6">
-      <div class="relative z-20 text-center text-white fade space-y-4">
+    <div class="slide bg-gradient-to-br from-purple-900 via-purple-800 to-pink-900" id="slide6">
+      <div class="relative z-20 text-center text-white fade space-y-4 flex flex-col justify-center items-center min-h-screen">
         <h1 class="text-3xl sm:text-4xl font-bold heart-glow">Selamat Ulang Tahun, Cintaku! 💖🎉</h1>
         <p class="text-lg sm:text-xl max-w-md mx-auto">Terima kasih telah menjadi bagian dari hidupku. Aku sayang kamu selamanya! 😘</p>
       </div>
@@ -161,9 +172,9 @@
 
     function showSlide(n) {
       document.querySelectorAll(".slide").forEach((slide, index) => {
-        slide.classList.add("hidden");
+        slide.classList.remove("active", "fade");
         if (index === n - 1) {
-          slide.classList.remove("hidden");
+          slide.classList.add("active");
           setTimeout(() => slide.classList.add("fade"), 100);
         }
       });
@@ -177,7 +188,6 @@
         if (currentSlide === 3) { i3 = 0; typeWriter3(); }
         if (currentSlide === 4) { i4 = 0; typeWriter4(); }
         if (currentSlide === 5) { i5 = 0; typeWriter5(); }
-        if (currentSlide === 6) { startHeartParticles(); }
       }
     }
 
@@ -206,9 +216,6 @@
     function initHearts(){hearts=[];for(let i=0;i<60;i++){hearts.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height-canvas.height,size:10+Math.random()*25,speed:0.5+Math.random()*2,color:`rgba(255,${Math.floor(100+Math.random()*155)},150,0.6)`});}}
     function animateHearts(){ctx.clearRect(0,0,canvas.width,canvas.height);hearts.forEach(h=>{drawHeart(h.x,h.y,h.size,h.color);h.y+=h.speed;if(h.y>canvas.height+h.size){h.y=-h.size;h.x=Math.random()*canvas.width;}h.x+=(Math.random()-0.5)*2;});requestAnimationFrame(animateHearts);}
     initHearts();animateHearts();
-
-    function startHeartParticles(){const canvas=document.createElement("canvas");canvas.id="heartParticles";canvas.style.position="fixed";canvas.style.top="0";canvas.style.left="0";canvas.style.width="100%";canvas.style.height="100%";canvas.style.zIndex="10";canvas.style.pointerEvents="none";canvas.style.opacity="0";canvas.style.transition="opacity 1.5s ease";document.body.appendChild(canvas);setTimeout(()=>{canvas.style.opacity="1";},100);const ctx=canvas.getContext("2d");const hearts=[];const maxHearts=40;function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}resizeCanvas();window.addEventListener("resize",resizeCanvas);class Heart{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*-20;this.size=Math.random()*8+3;this.speed=Math.random()*1+0.5;this.alpha=1;}draw(){ctx.save();ctx.translate(this.x,this.y);ctx.beginPath();ctx.moveTo(0,this.size/2);ctx.bezierCurveTo(this.size/2,-this.size/2,this.size,this.size/2,0,this.size);ctx.bezierCurveTo(-this.size,this.size/2,-this.size/2,-this.size/2,0,this.size/2);ctx.fillStyle=`rgba(255,105,180,${this.alpha})`;ctx.fill();ctx.restore();}update(){this.y+=this.speed;this.alpha-=0.002;}}function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);if(hearts.length<maxHearts&&Math.random()<0.05)hearts.push(new Heart());for(let i=hearts.length-1;i>=0;i--){const h=hearts[i];h.update();h.draw();if(h.alpha<=0)hearts.splice(i,1);}requestAnimationFrame(animate);}animate();}
-    showSlide(1);
   </script>
 </body>
 </html>
