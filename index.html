@@ -64,7 +64,7 @@
   <canvas id="loveCanvas"></canvas>
 
   <div id="slides" class="w-full h-screen flex flex-col items-center justify-center">
-    <!-- SLIDE 1: Pengantar -->
+    <!-- SLIDE 1 -->
     <div class="slide text-center space-y-6 fade" id="slide1">
       <div class="bg-white/90 backdrop-blur-sm shadow-2xl rounded-3xl p-6 sm:p-8 max-w-md mx-auto border border-pink-200">
         <h1 class="text-2xl sm:text-3xl font-bold text-pink-600 mb-4 heart-glow">Hii pacarrkuu 💖</h1>
@@ -77,7 +77,7 @@
       </div>
     </div>
 
-    <!-- SLIDE 2: Foto pertama dengan typewriter -->
+    <!-- SLIDE 2 -->
     <div class="slide hidden flex flex-col items-center space-y-6" id="slide2">
       <img src="and1.jpg" alt="Foto Pacar" class="rounded-3xl border-4 border-pink-400 photo-img w-48 sm:w-56 md:w-64 heart-glow"/>
       <div class="min-h-[200px] w-full max-w-2xl px-4 sm:px-6">
@@ -89,7 +89,7 @@
       </button>
     </div>
 
-    <!-- SLIDE 3: Foto kedua dengan typewriter -->
+    <!-- SLIDE 3 -->
     <div class="slide hidden flex flex-col items-center space-y-6" id="slide3">
       <img src="and3.jpg" alt="Foto Pacar" class="rounded-3xl border-4 border-purple-400 photo-img w-48 sm:w-56 md:w-64 heart-glow"/>
       <div class="min-h-[200px] w-full max-w-2xl px-4 sm:px-6">
@@ -101,7 +101,7 @@
       </button>
     </div>
 
-    <!-- SLIDE 4: Foto ketiga dengan typewriter -->
+    <!-- SLIDE 4 -->
     <div class="slide hidden flex flex-col items-center space-y-6" id="slide4">
       <img src="and2.jpg" alt="Foto Pacar" class="rounded-3xl border-4 border-pink-400 photo-img w-52 sm:w-60 md:w-72 heart-glow"/>
       <div class="min-h-[200px] w-full max-w-2xl px-4 sm:px-6">
@@ -113,7 +113,7 @@
       </button>
     </div>
 
-    <!-- SLIDE 5: GIF Kue Ulang Tahun dengan typewriter -->
+    <!-- SLIDE 5 -->
     <div class="slide hidden flex flex-col items-center space-y-6" id="slide5">
       <img src="birthday-6_256.gif" alt="Birthday Cake"
            class="rounded-3xl shadow-2xl mb-4 w-64 sm:w-72 md:w-80 cursor-pointer heart-glow transform hover:scale-105 transition-transform duration-300"
@@ -124,7 +124,7 @@
       <p class="text-sm text-gray-500 text-center italic">Klik kue untuk lanjut... 🎂</p>
     </div>
 
-    <!-- SLIDE 6: Partikel Love bentuk hati dengan confetti -->
+    <!-- SLIDE 6 -->
     <div class="slide hidden flex flex-col items-center justify-center bg-gradient-to-br from-black via-purple-900 to-pink-900 relative overflow-hidden" id="slide6">
       <canvas id="heartCanvas" class="w-full h-full absolute inset-0"></canvas>
       <div class="relative z-10 text-center text-white space-y-4 fade">
@@ -139,9 +139,7 @@
     const totalSlides = 6;
 
     function showSlide(n) {
-      // Hapus confetti lama jika ada
       if (currentSlide === 5) {
-        // Confetti di slide 5 saat klik kue
         confetti({
           particleCount: 100,
           spread: 70,
@@ -152,7 +150,7 @@
         slide.classList.add("hidden");
         if (index === n - 1) {
           slide.classList.remove("hidden");
-          setTimeout(() => slide.classList.add("fade"), 100); // Delay kecil untuk transisi halus
+          setTimeout(() => slide.classList.add("fade"), 100);
         }
       });
     }
@@ -167,7 +165,6 @@
         if (currentSlide === 5) { i5 = 0; typeWriter5(); }
         if (currentSlide === 6) { 
           startHeartParticles();
-          // Confetti akhir di slide 6
           setTimeout(() => {
             confetti({
               particleCount: 200,
@@ -179,42 +176,37 @@
       }
     }
 
-    // --- SLIDE 2 Typewriter ---
-    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering biat dia marahh tapi dia tetap akan memaafkanku sunggu sangat muliaa hatimuuu cantikkkk.";
+    // --- Typewriter teks ---
+    const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu...";
     let i2 = 0;
     function typeWriter2() {
       const p = document.getElementById("text2");
       const btn = document.getElementById("btn2");
       if (i2 === 0) p.innerHTML = "";
       if (i2 < text2.length) {
-        p.innerHTML += text2.charAt(i2);
-        i2++;
-        setTimeout(typeWriter2, 50); // Sedikit lebih lambat untuk efek romantis
-      } else { 
+        p.innerHTML += text2.charAt(i2++);
+        setTimeout(typeWriter2, 50);
+      } else {
         btn.classList.remove("hidden");
-        // Efek kecil: confetti ringan setelah selesai
         confetti({ particleCount: 20, spread: 30 });
       }
     }
 
-    // --- SLIDE 3 Typewriter ---
-    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss dan nggakk lupaa cantikkkkk bangettttt, kamu tau nggakk kalau kamu itu terdiri dari 70% air? tapi kalau kata ku sihh kamuu 100% kesayangann kuu";
+    const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss dan nggakk lupaa cantikkkkk bangettttt...";
     let i3 = 0;
     function typeWriter3() {
       const p = document.getElementById("text3");
       const btn = document.getElementById("btn3");
       if (i3 === 0) p.innerHTML = "";
       if (i3 < text3.length) {
-        p.innerHTML += text3.charAt(i3);
-        i3++;
+        p.innerHTML += text3.charAt(i3++);
         setTimeout(typeWriter3, 50);
-      } else { 
+      } else {
         btn.classList.remove("hidden");
         confetti({ particleCount: 20, spread: 30 });
       }
     }
 
-    // --- SLIDE 4 Typewriter ---
     const text4 = "Tapi tahu nggak sayang? Dari semua hal di dunia ini...";
     let i4 = 0;
     function typeWriter4() {
@@ -222,27 +214,23 @@
       const btn = document.getElementById("btn4");
       if (i4 === 0) p.innerHTML = "";
       if (i4 < text4.length) {
-        p.innerHTML += text4.charAt(i4);
-        i4++;
+        p.innerHTML += text4.charAt(i4++);
         setTimeout(typeWriter4, 50);
-      } else { 
+      } else {
         btn.classList.remove("hidden");
         confetti({ particleCount: 20, spread: 30 });
       }
     }
 
-    // --- SLIDE 5 Typewriter ---
     const text5 = "Selamat ulang tahun cintakuu 🎂💖 Semoga semua harapanmu tercapai...";
     let i5 = 0;
     function typeWriter5() {
       const p = document.getElementById("text5");
       if (i5 === 0) p.innerHTML = "";
       if (i5 < text5.length) {
-        p.innerHTML += text5.charAt(i5);
-        i5++;
+        p.innerHTML += text5.charAt(i5++);
         setTimeout(typeWriter5, 50);
       } else {
-        // Auto confetti setelah selesai, tapi tunggu klik untuk next
         confetti({ particleCount: 50, spread: 50 });
       }
     }
@@ -280,7 +268,7 @@
           y: Math.random() * canvas.height - canvas.height,
           size: 10 + Math.random() * 25,
           speed: 0.5 + Math.random() * 2,
-          color: `rgba(255, ${Math.floor(100 + Math.random() * 155)}, 150, 0.6)` // Variasi warna pink
+          color: `rgba(255, ${Math.floor(100 + Math.random() * 155)}, 150, 0.6)`
         });
       }
     }
@@ -294,7 +282,6 @@
           h.y = -h.size;
           h.x = Math.random() * canvas.width;
         }
-        // Sedikit sway horizontal untuk lebih hidup
         h.x += (Math.random() - 0.5) * 2;
       });
       requestAnimationFrame(animateHearts);
@@ -303,7 +290,7 @@
     initHearts();
     animateHearts();
 
-    // --- SLIDE 6 Partikel Love bentuk hati ---
+    // --- SLIDE 6 Partikel Hati ---
     function startHeartParticles() {
       const heartCanvas = document.getElementById("heartCanvas");
       const ctx2 = heartCanvas.getContext("2d");
@@ -314,7 +301,6 @@
       const heartPoints = [];
       const scale = Math.min(window.innerWidth, window.innerHeight) / 25;
 
-      // Generate points untuk bentuk hati
       for (let t = 0; t < Math.PI * 2; t += 0.1) {
         let x = scale * 16 * Math.pow(Math.sin(t), 3);
         let y = -scale * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
@@ -328,40 +314,34 @@
           size: 2 + Math.random() * 3,
           color: `rgba(255, ${Math.floor(100 + Math.random() * 155)}, 150, ${0.7 + Math.random() * 0.3})`,
           target: heartPoints[Math.floor(Math.random() * heartPoints.length)],
-          vx: (Math.random() - 0.5) * 0.5, // Sedikit gerakan acak
+          vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5
         });
       }
 
-      let progress = 0;
       function animate() {
         ctx2.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
-        progress += 0.008; // Lebih lambat untuk efek halus
-        if (progress > 1) progress = 1;
-
         particles.forEach(p => {
-          // Gerak ke target dengan easing
           p.x += (p.target.x - p.x) * 0.02 + p.vx;
           p.y += (p.target.y - p.y) * 0.02 + p.vy;
-          // Bounce kecil di tepi
           if (p.x < 0 || p.x > heartCanvas.width) p.vx *= -1;
           if (p.y < 0 || p.y > heartCanvas.height) p.vy *= -1;
-          
           ctx2.fillStyle = p.color;
           ctx2.beginPath();
           ctx2.arc(p.x, p.y, p.size, 0, Math.PI * 2);
           ctx2.fill();
-          
-          // Glow effect sederhana
           ctx2.shadowBlur = 10;
           ctx2.shadowColor = p.color;
         });
-        ctx2.shadowBlur = 0; // Reset shadow
-
         requestAnimationFrame(animate);
       }
 
       animate();
     }
 
-    // Mulai slide pertama
+    // 🔹 Inisialisasi awal — tampilkan slide pertama
+    showSlide(1);
+  </script>
+</body>
+</html>
+
