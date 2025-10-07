@@ -34,6 +34,16 @@
       flex-direction: column;
       align-items: center;
     }
+
+    /* Posisi setiap slide */
+    #slide1, #slide5, #slide6 {
+      justify-content: center; /* Tengah layar */
+    }
+    #slide2, #slide3, #slide4 {
+      justify-content: flex-start; /* Dari atas */
+      padding-top: 2rem;
+    }
+
     .typewriter-text {
       line-height: 1.6;
       word-break: break-word;
@@ -46,19 +56,16 @@
       margin-bottom: 1rem;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
-    #slide1, #slide6 {
-      justify-content: center;
-    }
-    #slide2, #slide3, #slide4, #slide5 {
-      justify-content: flex-start;
-      padding-top: 2rem;
-    }
-    #slide2 .photo-img { width: 150px; } /* Gambar kecil khusus slide 2 */
+
+    /* Ukuran gambar */
+    #slide2 .photo-img { width: 150px; }
     #slide3 .photo-img, #slide4 .photo-img { width: 200px; }
     #slide5 .photo-img { width: 180px; }
+
     button {
       margin-top: 0.5rem;
     }
+
     #loveCanvas {
       position: fixed;
       top: 0;
@@ -68,6 +75,7 @@
       z-index: 0;
       pointer-events: none;
     }
+
     #slides {
       position: relative;
       z-index: 1;
@@ -124,9 +132,9 @@
 
     <!-- SLIDE 5 -->
     <div class="slide" id="slide5">
-      <img src="birthday-6_256.gif" alt="Birthday Cake" class="rounded-3xl shadow-2xl w-44 sm:w-52 cursor-pointer heart-glow transform hover:scale-105 transition-transform duration-300"
+      <img src="birthday-6_256.gif" alt="Birthday Cake" class="rounded-3xl shadow-2xl w-48 sm:w-56 cursor-pointer heart-glow transform hover:scale-105 transition-transform duration-300 mb-3"
         onclick="stopMusic(); nextSlide();"/>
-      <p id="text5" class="text-xl sm:text-2xl font-bold text-pink-700 typewriter-text leading-relaxed"></p>
+      <p id="text5" class="text-xl sm:text-2xl font-bold text-pink-700 typewriter-text leading-relaxed mb-2"></p>
       <p class="text-sm text-gray-500 italic">Klik kue nya sayanggg 🍰</p>
     </div>
 
@@ -219,3 +227,4 @@
   </script>
 </body>
 </html>
+
