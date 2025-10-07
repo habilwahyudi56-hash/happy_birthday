@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kado Ulang Tahun</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -10,15 +10,24 @@
     body {
       margin: 0;
       overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     .fade {
       animation: fadeIn 0.8s ease-in-out;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+      from { opacity: 0; transform: scale(0.95) translateY(20px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
     }
-    /* canvas untuk love jatuh */
+    .slide {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+    /* Canvas untuk love jatuh */
     #loveCanvas {
       position: fixed;
       top: 0;
@@ -31,79 +40,97 @@
     #slides {
       position: relative;
       z-index: 1;
+      width: 100%;
+      height: 100vh;
+    }
+    .typewriter-text {
+      line-height: 1.6;
+      word-break: break-word;
+    }
+    .heart-glow {
+      filter: drop-shadow(0 0 10px rgba(255, 0, 150, 0.5));
+    }
+    /* Responsif untuk gambar */
+    .photo-img {
+      max-width: 100%;
+      height: auto;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
   </style>
 </head>
-<body class="flex items-center justify-center h-screen bg-gradient-to-br from-pink-200 via-purple-200 to-yellow-100">
+<body class="flex items-center justify-center bg-gradient-to-br from-pink-100 via-purple-100 to-yellow-50">
 
-  <!-- Canvas untuk love jatuh -->
+  <!-- Canvas untuk love jatuh di background -->
   <canvas id="loveCanvas"></canvas>
 
-  <div id="slides" class="w-full h-full flex flex-col items-center justify-center">
-    <!-- SLIDE 1 -->
-    <div class="slide text-center space-y-4" id="slide1">
-      <div class="bg-white shadow-xl rounded-2xl p-5 max-w-sm mx-auto">
-        <h1 class="text-xl font-bold text-pink-600 mb-3">Hii pacarrkuu 💖</h1>
-        <p class="text-base text-gray-700 mb-1">aku punya sesuatuu nihh 🎁</p>
-        <p class="text-base text-gray-700 mb-3">penasarannn gakk? 😆</p>
-        <button onclick="nextSlide()" class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm">
+  <div id="slides" class="w-full h-screen flex flex-col items-center justify-center">
+    <!-- SLIDE 1: Pengantar -->
+    <div class="slide text-center space-y-6 fade" id="slide1">
+      <div class="bg-white/90 backdrop-blur-sm shadow-2xl rounded-3xl p-6 sm:p-8 max-w-md mx-auto border border-pink-200">
+        <h1 class="text-2xl sm:text-3xl font-bold text-pink-600 mb-4 heart-glow">Hii pacarrkuu 💖</h1>
+        <p class="text-lg sm:text-xl text-gray-700 mb-2">aku punya sesuatuu nihh 🎁</p>
+        <p class="text-lg sm:text-xl text-gray-700 mb-4">penasarannn gakk? 😆</p>
+        <button onclick="nextSlide()" 
+                class="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-2xl shadow-lg hover:shadow-xl hover:from-pink-600 hover:to-purple-600 transition-all duration-300 text-base font-semibold transform hover:scale-105">
           Coba buka ➡️
         </button>
       </div>
     </div>
 
-    <!-- SLIDE 2 -->
-    <div class="slide hidden flex flex-col items-center space-y-4" id="slide2">
-      <img src="and1.jpg" alt="Foto Pacar"
-           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
-      <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text2" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
+    <!-- SLIDE 2: Foto pertama dengan typewriter -->
+    <div class="slide hidden flex flex-col items-center space-y-6" id="slide2">
+      <img src="and1.jpg" alt="Foto Pacar" class="rounded-3xl border-4 border-pink-400 photo-img w-48 sm:w-56 md:w-64 heart-glow"/>
+      <div class="min-h-[200px] w-full max-w-2xl px-4 sm:px-6">
+        <p id="text2" class="text-lg sm:text-xl font-semibold text-pink-700 mx-auto text-center typewriter-text leading-relaxed"></p>
       </div>
       <button id="btn2" onclick="nextSlide()" 
-              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
+              class="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl shadow-lg hover:shadow-xl hover:from-purple-600 hover:to-pink-600 transition-all duration-300 text-base font-semibold transform hover:scale-105 hidden">
         Lanjutin yaa ➡️
       </button>
     </div>
 
-    <!-- SLIDE 3 -->
-    <div class="slide hidden flex flex-col items-center space-y-4" id="slide3">
-      <img src="and3.jpg" alt="Foto Pacar"
-           class="rounded-2xl border-2 border-pink-400 mb-3 w-48 sm:w-56 md:w-64"/>
-      <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text3" class="text-base font-semibold text-purple-700 mx-auto text-center"></p>
+    <!-- SLIDE 3: Foto kedua dengan typewriter -->
+    <div class="slide hidden flex flex-col items-center space-y-6" id="slide3">
+      <img src="and3.jpg" alt="Foto Pacar" class="rounded-3xl border-4 border-purple-400 photo-img w-48 sm:w-56 md:w-64 heart-glow"/>
+      <div class="min-h-[200px] w-full max-w-2xl px-4 sm:px-6">
+        <p id="text3" class="text-lg sm:text-xl font-semibold text-purple-700 mx-auto text-center typewriter-text leading-relaxed"></p>
       </div>
       <button id="btn3" onclick="nextSlide()" 
-              class="px-4 py-2 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition text-sm hidden">
+              class="px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-2xl shadow-lg hover:shadow-xl hover:from-pink-600 hover:to-purple-600 transition-all duration-300 text-base font-semibold transform hover:scale-105 hidden">
         Lanjut, masih kuat kann? ➡️
       </button>
     </div>
 
-    <!-- SLIDE 4 -->
-    <div class="slide hidden flex flex-col items-center space-y-4" id="slide4">
-      <img src="and2.jpg" alt="Foto Pacar"
-           class="rounded-2xl border-2 border-purple-400 mb-3 w-52 sm:w-60 md:w-72"/>
-      <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text4" class="text-base font-semibold text-pink-700 mx-auto text-center"></p>
+    <!-- SLIDE 4: Foto ketiga dengan typewriter -->
+    <div class="slide hidden flex flex-col items-center space-y-6" id="slide4">
+      <img src="and2.jpg" alt="Foto Pacar" class="rounded-3xl border-4 border-pink-400 photo-img w-52 sm:w-60 md:w-72 heart-glow"/>
+      <div class="min-h-[200px] w-full max-w-2xl px-4 sm:px-6">
+        <p id="text4" class="text-lg sm:text-xl font-semibold text-pink-700 mx-auto text-center typewriter-text leading-relaxed"></p>
       </div>
       <button id="btn4" onclick="nextSlide()" 
-              class="px-4 py-2 bg-purple-500 text-white rounded-xl shadow hover:bg-purple-600 transition text-sm hidden">
+              class="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl shadow-lg hover:shadow-xl hover:from-purple-600 hover:to-pink-600 transition-all duration-300 text-base font-semibold transform hover:scale-105 hidden">
         Terakhir nihh 🎉
       </button>
     </div>
 
-    <!-- SLIDE 5 (GIF Kue Ulang Tahun) -->
-    <div class="slide hidden flex flex-col items-center space-y-4" id="slide5">
+    <!-- SLIDE 5: GIF Kue Ulang Tahun dengan typewriter -->
+    <div class="slide hidden flex flex-col items-center space-y-6" id="slide5">
       <img src="birthday-6_256.gif" alt="Birthday Cake"
-           class="rounded-2xl shadow-lg mb-3 w-64 sm:w-72 md:w-80 cursor-pointer"
+           class="rounded-3xl shadow-2xl mb-4 w-64 sm:w-72 md:w-80 cursor-pointer heart-glow transform hover:scale-105 transition-transform duration-300"
            onclick="nextSlide()"/>
-      <div class="min-h-[200px] w-full max-w-xl px-3">
-        <p id="text5" class="text-lg font-bold text-pink-700 mx-auto text-center"></p>
+      <div class="min-h-[200px] w-full max-w-2xl px-4 sm:px-6">
+        <p id="text5" class="text-xl sm:text-2xl font-bold text-pink-700 mx-auto text-center typewriter-text leading-relaxed"></p>
       </div>
+      <p class="text-sm text-gray-500 text-center italic">Klik kue untuk lanjut... 🎂</p>
     </div>
 
-    <!-- SLIDE 6 (Partikel Love bentuk hati) -->
-    <div class="slide hidden flex flex-col items-center justify-center bg-black" id="slide6">
-      <canvas id="heartCanvas" class="w-full h-full"></canvas>
+    <!-- SLIDE 6: Partikel Love bentuk hati dengan confetti -->
+    <div class="slide hidden flex flex-col items-center justify-center bg-gradient-to-br from-black via-purple-900 to-pink-900 relative overflow-hidden" id="slide6">
+      <canvas id="heartCanvas" class="w-full h-full absolute inset-0"></canvas>
+      <div class="relative z-10 text-center text-white space-y-4 fade">
+        <h1 class="text-3xl sm:text-4xl font-bold heart-glow">Selamat Ulang Tahun, Cintaku! 💖🎉</h1>
+        <p class="text-lg sm:text-xl max-w-md mx-auto">Terima kasih telah menjadi bagian dari hidupku. Aku sayang kamu selamanya! 😘</p>
+      </div>
     </div>
   </div>
 
@@ -112,11 +139,20 @@
     const totalSlides = 6;
 
     function showSlide(n) {
+      // Hapus confetti lama jika ada
+      if (currentSlide === 5) {
+        // Confetti di slide 5 saat klik kue
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
       document.querySelectorAll(".slide").forEach((slide, index) => {
         slide.classList.add("hidden");
         if (index === n - 1) {
           slide.classList.remove("hidden");
-          slide.classList.add("fade");
+          setTimeout(() => slide.classList.add("fade"), 100); // Delay kecil untuk transisi halus
         }
       });
     }
@@ -129,11 +165,21 @@
         if (currentSlide === 3) { i3 = 0; typeWriter3(); }
         if (currentSlide === 4) { i4 = 0; typeWriter4(); }
         if (currentSlide === 5) { i5 = 0; typeWriter5(); }
-        if (currentSlide === 6) { startHeartParticles(); }
+        if (currentSlide === 6) { 
+          startHeartParticles();
+          // Confetti akhir di slide 6
+          setTimeout(() => {
+            confetti({
+              particleCount: 200,
+              spread: 360,
+              origin: { y: 0.5 }
+            });
+          }, 1000);
+        }
       }
     }
 
-    // --- SLIDE 2 ---
+    // --- SLIDE 2 Typewriter ---
     const text2 = "Kamuu kenall ini nggak? Inii pacarr akuu, diaa yang menemani aku dalam kondisi apapunn itu, meskipun aku sering biat dia marahh tapi dia tetap akan memaafkanku sunggu sangat muliaa hatimuuu cantikkkk.";
     let i2 = 0;
     function typeWriter2() {
@@ -143,11 +189,15 @@
       if (i2 < text2.length) {
         p.innerHTML += text2.charAt(i2);
         i2++;
-        setTimeout(typeWriter2, 40);
-      } else { btn.classList.remove("hidden"); }
+        setTimeout(typeWriter2, 50); // Sedikit lebih lambat untuk efek romantis
+      } else { 
+        btn.classList.remove("hidden");
+        // Efek kecil: confetti ringan setelah selesai
+        confetti({ particleCount: 20, spread: 30 });
+      }
     }
 
-    // --- SLIDE 3 ---
+    // --- SLIDE 3 Typewriter ---
     const text3 = "Lihat inii...... Lucu kann, wajahnya imutt, manisss dan nggakk lupaa cantikkkkk bangettttt, kamu tau nggakk kalau kamu itu terdiri dari 70% air? tapi kalau kata ku sihh kamuu 100% kesayangann kuu";
     let i3 = 0;
     function typeWriter3() {
@@ -157,11 +207,14 @@
       if (i3 < text3.length) {
         p.innerHTML += text3.charAt(i3);
         i3++;
-        setTimeout(typeWriter3, 40);
-      } else { btn.classList.remove("hidden"); }
+        setTimeout(typeWriter3, 50);
+      } else { 
+        btn.classList.remove("hidden");
+        confetti({ particleCount: 20, spread: 30 });
+      }
     }
 
-    // --- SLIDE 4 ---
+    // --- SLIDE 4 Typewriter ---
     const text4 = "Tapi tahu nggak sayang? Dari semua hal di dunia ini...";
     let i4 = 0;
     function typeWriter4() {
@@ -171,11 +224,14 @@
       if (i4 < text4.length) {
         p.innerHTML += text4.charAt(i4);
         i4++;
-        setTimeout(typeWriter4, 40);
-      } else { btn.classList.remove("hidden"); }
+        setTimeout(typeWriter4, 50);
+      } else { 
+        btn.classList.remove("hidden");
+        confetti({ particleCount: 20, spread: 30 });
+      }
     }
 
-    // --- SLIDE 5 ---
+    // --- SLIDE 5 Typewriter ---
     const text5 = "Selamat ulang tahun cintakuu 🎂💖 Semoga semua harapanmu tercapai...";
     let i5 = 0;
     function typeWriter5() {
@@ -184,7 +240,10 @@
       if (i5 < text5.length) {
         p.innerHTML += text5.charAt(i5);
         i5++;
-        setTimeout(typeWriter5, 40);
+        setTimeout(typeWriter5, 50);
+      } else {
+        // Auto confetti setelah selesai, tapi tunggu klik untuk next
+        confetti({ particleCount: 50, spread: 50 });
       }
     }
 
@@ -203,7 +262,7 @@
     function drawHeart(x, y, size, color) {
       ctx.save();
       ctx.translate(x, y);
-      ctx.scale(size/20, size/20);
+      ctx.scale(size / 20, size / 20);
       ctx.beginPath();
       ctx.moveTo(0, 0);
       ctx.bezierCurveTo(-10, -10, -20, 10, 0, 20);
@@ -217,11 +276,11 @@
       hearts = [];
       for (let i = 0; i < 60; i++) {
         hearts.push({
-          x: Math.random()*canvas.width,
-          y: Math.random()*canvas.height,
-          size: 10+Math.random()*25,
-          speed: 0.5+Math.random()*2,
-          color: "rgba(255,0,100,0.8)"
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          size: 10 + Math.random() * 25,
+          speed: 0.5 + Math.random() * 2,
+          color: `rgba(255, ${Math.floor(100 + Math.random() * 155)}, 150, 0.6)` // Variasi warna pink
         });
       }
     }
@@ -233,8 +292,10 @@
         h.y += h.speed;
         if (h.y > canvas.height + h.size) {
           h.y = -h.size;
-          h.x = Math.random()*canvas.width;
+          h.x = Math.random() * canvas.width;
         }
+        // Sedikit sway horizontal untuk lebih hidup
+        h.x += (Math.random() - 0.5) * 2;
       });
       requestAnimationFrame(animateHearts);
     }
@@ -253,37 +314,49 @@
       const heartPoints = [];
       const scale = Math.min(window.innerWidth, window.innerHeight) / 25;
 
-      // generate points hati
+      // Generate points untuk bentuk hati
       for (let t = 0; t < Math.PI * 2; t += 0.1) {
         let x = scale * 16 * Math.pow(Math.sin(t), 3);
         let y = -scale * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
-        heartPoints.push({x: x + heartCanvas.width / 2, y: y + heartCanvas.height / 2});
+        heartPoints.push({ x: x + heartCanvas.width / 2, y: y + heartCanvas.height / 2 });
       }
 
       for (let i = 0; i < 800; i++) {
         particles.push({
           x: Math.random() * heartCanvas.width,
           y: Math.random() * heartCanvas.height,
-          size: 2 + Math.random() * 2,
-          color: "rgba(255,0,100,0.9)",
-          target: heartPoints[Math.floor(Math.random() * heartPoints.length)]
+          size: 2 + Math.random() * 3,
+          color: `rgba(255, ${Math.floor(100 + Math.random() * 155)}, 150, ${0.7 + Math.random() * 0.3})`,
+          target: heartPoints[Math.floor(Math.random() * heartPoints.length)],
+          vx: (Math.random() - 0.5) * 0.5, // Sedikit gerakan acak
+          vy: (Math.random() - 0.5) * 0.5
         });
       }
 
       let progress = 0;
       function animate() {
         ctx2.clearRect(0, 0, heartCanvas.width, heartCanvas.height);
-        progress += 0.01;
+        progress += 0.008; // Lebih lambat untuk efek halus
         if (progress > 1) progress = 1;
 
         particles.forEach(p => {
-          p.x += (p.target.x - p.x) * 0.015;
-          p.y += (p.target.y - p.y) * 0.015;
+          // Gerak ke target dengan easing
+          p.x += (p.target.x - p.x) * 0.02 + p.vx;
+          p.y += (p.target.y - p.y) * 0.02 + p.vy;
+          // Bounce kecil di tepi
+          if (p.x < 0 || p.x > heartCanvas.width) p.vx *= -1;
+          if (p.y < 0 || p.y > heartCanvas.height) p.vy *= -1;
+          
           ctx2.fillStyle = p.color;
           ctx2.beginPath();
           ctx2.arc(p.x, p.y, p.size, 0, Math.PI * 2);
           ctx2.fill();
+          
+          // Glow effect sederhana
+          ctx2.shadowBlur = 10;
+          ctx2.shadowColor = p.color;
         });
+        ctx2.shadowBlur = 0; // Reset shadow
 
         requestAnimationFrame(animate);
       }
@@ -291,8 +364,4 @@
       animate();
     }
 
-    showSlide(currentSlide);
-  </script>
-</body>
-</html>
-
+    // Mulai slide pertama
