@@ -12,6 +12,7 @@
       overflow: hidden;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+
     .fade {
       animation: fadeIn 0.8s ease-in-out;
     }
@@ -19,6 +20,7 @@
       from { opacity: 0; transform: scale(0.95) translateY(20px); }
       to { opacity: 1; transform: scale(1) translateY(0); }
     }
+
     .slide {
       min-height: 100vh;
       width: 100%;
@@ -37,10 +39,10 @@
 
     /* Posisi setiap slide */
     #slide1, #slide5, #slide6 {
-      justify-content: center; /* Tengah layar */
+      justify-content: center;
     }
     #slide2, #slide3, #slide4 {
-      justify-content: flex-start; /* Dari atas */
+      justify-content: flex-start;
       padding-top: 2rem;
     }
 
@@ -48,9 +50,11 @@
       line-height: 1.6;
       word-break: break-word;
     }
+
     .heart-glow {
       filter: drop-shadow(0 0 10px rgba(255, 0, 150, 0.5));
     }
+
     .photo-img {
       height: auto;
       margin-bottom: 1rem;
@@ -60,7 +64,17 @@
     /* Ukuran gambar */
     #slide2 .photo-img { width: 150px; }
     #slide3 .photo-img, #slide4 .photo-img { width: 200px; }
-    #slide5 .photo-img { width: 180px; }
+    #slide5 .photo-img { width: 180px; border: 4px solid #ff69b4; } /* Border solid pink di GIF */
+
+    /* Border lembut untuk teks di slide 1 */
+    #slide1 h1, #slide1 p {
+      background-color: rgba(255, 255, 255, 0.7);
+      border: 2px solid rgba(255, 105, 180, 0.6);
+      border-radius: 1rem;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      box-shadow: 0 4px 15px rgba(255, 192, 203, 0.3);
+    }
 
     button {
       margin-top: 0.5rem;
@@ -132,7 +146,7 @@
 
     <!-- SLIDE 5 -->
     <div class="slide" id="slide5">
-      <img src="birthday-6_256.gif" alt="Birthday Cake" class="rounded-3xl shadow-2xl w-48 sm:w-56 cursor-pointer heart-glow transform hover:scale-105 transition-transform duration-300 mb-3"
+      <img src="birthday-6_256.gif" alt="Birthday Cake" class="rounded-3xl shadow-2xl cursor-pointer heart-glow transform hover:scale-105 transition-transform duration-300 mb-3 photo-img"
         onclick="stopMusic(); nextSlide();"/>
       <p id="text5" class="text-xl sm:text-2xl font-bold text-pink-700 typewriter-text leading-relaxed mb-2"></p>
       <p class="text-sm text-gray-500 italic">Klik kue nya sayanggg 🍰</p>
@@ -145,7 +159,6 @@
         <p class="text-lg sm:text-xl max-w-md mx-auto">Terima kasih telah menjadi bagian dari hidupku. Aku sayang kamu selamanya! 😘</p>
       </div>
     </div>
-
   </div>
 
   <script>
@@ -227,4 +240,3 @@
   </script>
 </body>
 </html>
-
